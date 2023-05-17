@@ -1,3 +1,4 @@
+import Button from "../components/button/Button";
 import Card from "../components/card/Card";
 const UserInfo = () => {
   return (
@@ -8,18 +9,57 @@ const UserInfo = () => {
           Esta es tu información personal y de tu empresa
         </h2>
       </div>
-      <div>
+      <div className="flex flex-col space-y-4 ">
+        {/* Información Personal */}
         <Card>
-          <div>
-            <h2 className="text-lg">Información personal</h2>
+          <h2 className="text-lg  ">Información personal</h2>
+
+          <div className="flex flex-col md:flex-row md:justify-between ">
+            <div>
+              <h3 className="text-sm text-gray-400">Nombre y apellido</h3>
+              <h2>Juan Ferna</h2>
+            </div>
+            <div>
+              <h3 className="text-sm text-gray-400">Número de contacto</h3>
+              <h2>323232323</h2>
+            </div>
           </div>
-          <div>
-            <h3 className="text-sm">Nombre y apellido</h3>
-            <h2>Juan Ferna</h2>
+        </Card>
+        {/* Información de la empresa */}
+        <Card>
+          <h2 className="text-lg  ">Información de la Empresa</h2>
+
+          <div className="flex flex-col md:flex-row md:justify-between ">
+            <div>
+              <div>
+                <h3 className="text-sm text-gray-400">Razón Social</h3>
+                <h2>Pasteles</h2>
+              </div>
+              <div>
+                <h3 className="text-sm text-gray-400">Domicilio</h3>
+                <h2>Calle San Juan S/N Villa Remedios</h2>
+              </div>
+            </div>
+            <div>
+              <div>
+                <h3 className="text-sm text-gray-400">Rut empresa</h3>
+                <h2>2055110-0</h2>
+              </div>
+              <div>
+                <h3 className="text-sm text-gray-400">Email</h3>
+                <h2>jmf798@yahoo.com.ar</h2>
+              </div>
+            </div>
           </div>
-          <div>
-            <h3 className="text-sm">Número de contacto</h3>
-            <h2>323232323</h2>
+        </Card>
+        <Card>
+          <div className="flex flex-col md:flex-row md:justify-between ">
+            <div>
+              <h2 className="text-lg  ">Contraseña de la cuenta</h2>
+            </div>
+            <div>
+              <Button>Cambiar contraseña</Button>
+            </div>
           </div>
         </Card>
       </div>
