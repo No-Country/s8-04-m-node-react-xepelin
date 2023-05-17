@@ -1,5 +1,7 @@
 import Button from "../components/button/Button";
 import Card from "../components/card/Card";
+
+
 const UserInfo = () => {
   return (
     <div className="bg-Neutral-50 p-10">

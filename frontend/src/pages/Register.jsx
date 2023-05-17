@@ -1,12 +1,14 @@
-import RegisterForm from '../component/RegisterForm';
-function Register() {
 
+import RegisterForm from "../components/RegisterForm/RegisterForm"
+
+function Register() {
     return (
         <div className='bg-sky-100 w-full h-full'>
-<RegisterForm/>
+            
+            <RegisterForm/>
         </div>
-        
-  
-    )
+    );
 }
+
+
 export default Register;
