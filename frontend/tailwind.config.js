@@ -13,7 +13,7 @@ export default {
         'Primary-50' : '#7177ED',
         'Neutral-100' : '#22283A',
         'Neutral-50' : '#DDE6F6',
-        'Blanco' : '#F5F5F5'
+        'Blanco' : '#F5F5F5',
       }
     },
   },
