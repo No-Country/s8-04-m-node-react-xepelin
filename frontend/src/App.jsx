@@ -18,9 +18,9 @@ function App() {
         <Route path="/profile" element={<UserInfo />} />
         
       </Routes>
-      
+      <Footer/>
     </Router>
-    <Footer/>
+    
     </div>
   );
 }
