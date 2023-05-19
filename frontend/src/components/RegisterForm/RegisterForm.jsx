@@ -170,7 +170,7 @@ const RegisterForm = () => {
           {currentPage === 3 && (
             <div className="p-4">
               <div className="text-Primary-50 text-center pt-8 pb-8 font-medium">
-                Paso 1 de 3
+                Paso 3 de 3
               </div>
               <div className="text-center text-2xl pt-3 pb-3 font-semibold">
                 Crear Cuenta
