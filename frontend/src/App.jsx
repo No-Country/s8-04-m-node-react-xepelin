@@ -3,7 +3,7 @@ import Home from './pages/Home';
 import Register from './pages/Register';
 import UserInfo from './pages/UserInfo';
 import NavBar from './components/Navbar/NavBar';
-import Footer from './components/Footer/Footer'
+import Footer from './components/Footer/Footer';
 
 
 function App() {
@@ -16,7 +16,6 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/profile" element={<UserInfo />} />
-        
       </Routes>
       <Footer/>
     </Router>
@@ -24,7 +23,6 @@ function App() {
     </div>
   );
 }
-
   
 
 export default App
