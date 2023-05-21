@@ -14,6 +14,8 @@ export default {
         'Neutral-100' : '#22283A',
         'Neutral-50' : '#DDE6F6',
         'Blanco' : '#F5F5F5',
+        "Violeta-xe":"#eb5cd1",
+        "Naraja-xe":"#fc831c",
       }
     },
   },
