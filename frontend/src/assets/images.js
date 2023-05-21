@@ -10,7 +10,9 @@ import flesan from "./Home/flesan.svg";
 import sacyr from "./Home/sacyr.svg";
 import mega from "./Home/mega.svg";
 import izquierdo from "./Home/izquierdo.svg";
-
+import oclock from "./Home/oclock.svg";
+import formPay from "./Home/formPay.svg";
+import dolar from "./Home/dolar.svg";
 
 export {
 
@@ -22,4 +24,7 @@ export {
     sacyr,
     izquierdo,
     mega,
+    oclock,
+    formPay,
+    dolar,
 }

@@ -2,10 +2,18 @@
 import React from 'react';
 import { AiOutlineArrowRight } from "react-icons/ai";
 import videoPrincipal from "../../assets/video/dashboard-xepelin.mp4";
-import { cmp, flesan, izquierdo, mega, sacyr, wom } from '../../assets/images';
+import { cmp, dolar, flesan, formPay, izquierdo, mega, oclock, sacyr, wom } from '../../assets/images';
 import Button from "../button/Button.jsx";
-
+import Card from "../card/Card.jsx";
 const HomeContent = () => {
+
+    const backgroundTexto = {
+        background: 'linear-gradient(56.45deg, #ff7d00 1.78%, #fc771c 16.06%, #f56565 51.07%, #ea4ad8 98.59%, #e640ff 104.65%)',
+        backgroundClip: 'border-box',
+        WebkitBackgroundClip: 'text',
+        WebkitTextFillColor: 'transparent',
+      };
+
   return (
     <main className='w-full h-auto p-7 bg-Neutral-50'>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2 py-5 my-[5rem] ">
@@ -76,6 +84,68 @@ const HomeContent = () => {
                         </div>
                     </Button>   
                 </div>
+            </div>
+
+            <div className='w-full p-10 mx-auto mt-10'>
+                <div className=' bg-white p-[2rem] rounded-xl'>
+                    <h2 style={backgroundTexto} className='font-bold text-[1.25rem]'>
+                        Una plataforma de pago totalmente integral
+                    </h2>
+                    <h3 className='text-[2.5rem] font-bold my-[2rem]'>
+                        Paga todas tus obligaciones en tiempo real
+                    </h3>
+                    <p className='text-[1.25rem] my-[4rem]'>
+                        Con Payments dispersa tus pagos de manera gratuita, paga a tus proveedores, cumple con tus obligaciones y accede a financiamiento.
+                    </p>
+                    <div className='grid gap-3 grid-cols-1 md:grid-cols-3 pt-6'>
+                    <div className='col-span-1'>
+                        <Card>
+                            <div>
+                                <img src={oclock} alt='oclock'/>
+
+                                <h2 className='font-bold'>
+                                    Accede a financiamiento
+                                </h2>
+                                <p>
+                                    Para pagar a tus proveedores de manera 100% digital, a través de la misma plataforma Xepelin.
+                                </p>
+                            </div>
+                        </Card>
+                    </div>
+
+                    <div className='col-span-1'>
+                        <Card>
+                            <div>
+                                <img src={formPay} alt='oclock'/>
+
+                                <h2 className='font-bold'>
+                                    Pago flexible
+                                </h2>
+                                <p>
+                                    Elige pagar desde tu caja, accediendo a financiamiento o de forma mixta. 
+                                </p>
+                            </div>
+                        </Card>
+                    </div>
+
+                    <div className='col-span-1'>
+                        <Card>
+                            <div>
+                                <img src={dolar} alt='oclock'/>
+
+                                <h2 className='font-bold'>
+                                    Accede a financiamiento
+                                </h2>
+                                <p>
+                                    Sincroniza tus cuentas por pagar y centraliza la información de tus proveedores en una sola plataforma.
+                                </p>
+                            </div>
+                        </Card>
+                    </div>
+                </div>
+                </div>
+
+               
             </div>
 
         </div>
