@@ -5,6 +5,7 @@ import {
   Patch,
   Param,
   ParseUUIDPipe,
+  ParseIntPipe,
 } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 
@@ -16,7 +17,7 @@ import { CreateUserDto, LoginUserDto, UpdateUserDto } from './dto';
 @ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService) { }
 
   @ApiResponse({ status: 201, description: 'User was create', type: User })
   @ApiResponse({
@@ -26,6 +27,16 @@ export class AuthController {
   @Post('register')
   createUser(@Body() createUserDto: CreateUserDto) {
     return this.authService.create(createUserDto);
+  }
+
+  @Post('login')
+  loginUser(@Body() userLogin: LoginUserDto) {
+    return this.authService.login(userLogin);
+  }
+
+  @Patch('update/:id')
+  updateUser(@Param('id') id: string, @Body() user: UpdateUserDto) {
+    return this.authService.updateUser(id, user)
   }
 
   // @ApiResponse({ status: 201, description: 'User was logged', type: User })
