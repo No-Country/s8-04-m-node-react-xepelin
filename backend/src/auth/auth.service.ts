@@ -1,5 +1,7 @@
 import {
   BadRequestException,
+  HttpException,
+  HttpStatus,
   Injectable,
   InternalServerErrorException,
   UnauthorizedException,
@@ -46,7 +48,54 @@ export class AuthService {
       this.handleDBError(error);
     }
   }
+  async login(loginAuthDto:LoginUserDto){
+    try{
+      const {email,password} = loginAuthDto;
+      const findUser = await this.userModel.findOne({email}).select('-password');
+      const findbyPass = await this.userModel.findOne({email});
 
+      if(!findUser){
+        throw new HttpException('USER_NOT_FOUND', HttpStatus.NOT_FOUND);
+      }
+      const comparePassword = await bcrypt.compare(password,findbyPass.password);
+
+      if(!comparePassword){
+        throw new HttpException('PASSWORD_INCORRECT', HttpStatus.FORBIDDEN);
+      }
+
+      const payload = { id:findUser._id, firstname:findUser.firstName};
+      const token = this.jwtService.sign(payload);
+
+      const data = {
+        user: findUser,
+        token: token
+      }
+
+      return data
+
+    }catch(error){
+      this.handleDBError(error);
+    }
+  }
+
+  async updateUser(id:string, updateUserDto:UpdateUserDto){
+   const userUpdate = await this.userModel.findByIdAndUpdate(id, updateUserDto,{new:true});
+   
+   if (!userUpdate) {
+    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+   }
+   if (updateUserDto.password) {
+      const hashedPassword =bcrypt.hashSync(userUpdate.password, 10); 
+      userUpdate.password = hashedPassword; 
+   }
+
+   const userSave = await userUpdate.save();
+
+   if(userSave && userSave.password){
+    userUpdate.password =undefined
+   }
+   return userSave
+  }
   // async update(id: string, updateUserDto: UpdateUserDto) {
   //   const user = this.userModel.findOne({ where: { id } });
   //   if (!user) {
