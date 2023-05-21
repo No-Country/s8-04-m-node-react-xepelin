@@ -2,9 +2,12 @@
 import React from 'react';
 import { AiOutlineArrowRight } from "react-icons/ai";
 import videoPrincipal from "../../assets/video/dashboard-xepelin.mp4";
-import { cmp, dolar, flesan, formPay, izquierdo, mega, oclock, sacyr, wom } from '../../assets/images';
+import { cmp, dolar, flesan, formPay, fpAndfd, izquierdo, lineadecredito, mega, oclock, sacyr, wom, portatil, calendario, manoseguridad } from '../../assets/images';
 import Button from "../button/Button.jsx";
 import Card from "../card/Card.jsx";
+
+
+
 const HomeContent = () => {
 
     const backgroundTexto = {
@@ -12,9 +15,9 @@ const HomeContent = () => {
         backgroundClip: 'border-box',
         WebkitBackgroundClip: 'text',
         WebkitTextFillColor: 'transparent',
-      };
+    };
 
-  return (
+    return (
     <main className='w-full h-auto p-7 bg-Neutral-50'>
         <div className="grid gap-4 grid-cols-1 md:grid-cols-2 py-5 my-[5rem] ">
             <section className="col-span-1">
@@ -144,10 +147,113 @@ const HomeContent = () => {
                     </div>
                 </div>
                 </div>
-
-               
             </div>
 
+        </div>
+
+
+        <div className='w-full p-10 mx-auto mt-2 rounded-xl'>
+                    
+                    <div className='grid gap-3 grid-cols-1 md:grid-cols-2 pt-6'>
+                    
+                        <div className='col-span-1 bg-[#1d2856] p-10 rounded-2xl flex flex-col justify-between'>
+                            <img src={lineadecredito} alt='lineaCredito' />
+                            <button type="button" className="w-full bg-white text-purple-950  border border-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Contactanos</button>
+                        </div>
+
+                        <div className='col-span-1 bg-[#f06a92] p-10 rounded-2xl'>
+                            <h3 className='font-bold mb-[2rem] text-[1.5rem] text-white'>
+                                Haz uso del ecosistema Xepelin
+                            </h3>
+
+                            <p className='text-white mb-[2rem]'>
+                                Adelanta el pago de tus facturas a través de nuestros productos Financiamiento Directo y Pronto Pago y accede a capital para pagar tus obligaciones a través de la misma plataforma.
+                            </p>
+
+                            <div>
+                                <img src={fpAndfd} alt='forma de pago rapido' />
+                            </div>
+                        </div>
+                    </div>
+                
+        </div>
+
+        <div className='w-full p-10 mx-auto mt-2 rounded-xl'>
+                    <h2 className='text-center text-[1.75rem] md:text-[2.5rem] font-[600] my-10'>
+                    Una plataforma de pagos apalancada en tecnología
+                    </h2>
+                    <div className='grid gap-10 grid-cols-1 md:grid-cols-2 pt-6'>
+
+                        <div className='col-span-1'>
+                            <Card>
+                                <div className='p-8 rounded-2xl'>
+                                    <div className='flex justify-start items-center'>
+                                        <img src={portatil} alt='oclock' className='mx-1'/>
+                                        <h2 className='font-bold text-[1.75rem] mx-1'>
+                                            Servicio 100% Digital
+                                        </h2>
+                                    </div>
+                                    <p className='mt-2'>
+                                        Regístrate, vincula tu empresa y opera, todo sin trámites presenciales y a través de una sola plataforma digital.
+                                    </p>
+                                    
+                                </div>
+                            </Card>
+                        </div>
+
+                        <div className='col-span-1'>
+                            <Card>
+                                <div className='p-8 rounded-2xl'>
+                                    <div className='flex justify-start items-center'>
+                                        <img src={calendario} alt='calendario' className='mx-1'/>
+                                        <h2 className='font-bold text-[1.75rem] mx-1'>
+                                            Aprobación inmediata
+                                        </h2>
+                                    </div>
+                                    <p className='mt-2'>
+                                        Nuestro modelo de Inteligencia Artificial evalúa en minutos tu solicitud.
+                                    </p>
+                                    
+                                </div>
+                            </Card>
+                        </div>
+
+                        <div className='col-span-1'>
+                            <Card>
+                                <div className='p-8 rounded-2xl'>
+                                    <div className='flex justify-start items-center'>
+                                        <img src={manoseguridad} alt='manoseguridad' className='mx-1'/>
+                                        <h2 className='font-bold text-[1.75rem] mx-1'>
+                                        Proceso 100% seguro
+                                        </h2>
+                                    </div>
+                                    <p className='mt-2'>
+                                        Regístrate, vincula tu empresa y opera, todo sin trámites presenciales y a través de una sola plataforma digital.
+                                    </p>
+                                    
+                                </div>
+                            </Card>
+                        </div>
+
+                        <div className='col-span-1'>
+                            <Card>
+                                <div className='p-8 rounded-2xl'>
+                                    <div className='flex justify-start items-center'>
+                                        <img src={oclock} alt='oclock' className='mx-1'/>
+                                        <h2 className='font-bold text-[1.75rem] mx-1'>
+                                            Financiamiento en 24 hrs
+                                        </h2>
+                                    </div>
+                                    <p className='mt-2'>
+                                        Nuestra tecnología  te permite registrarte en Xepelin,  solicitar y obtener el capital dentro del mismo día.
+                                    </p>
+                                    
+                                </div>
+                            </Card>
+                        </div>
+                        
+                    </div>
+                
         </div>
     </main>
     )

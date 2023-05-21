@@ -13,6 +13,11 @@ import izquierdo from "./Home/izquierdo.svg";
 import oclock from "./Home/oclock.svg";
 import formPay from "./Home/formPay.svg";
 import dolar from "./Home/dolar.svg";
+import lineadecredito from "./Home/lineaDecredito.svg";
+import fpAndfd from "./Home/fpAndfd.svg";
+import portatil from "./Home/portatil.svg";
+import calendario from "./Home/calendario.svg";
+import manoseguridad from "./Home/manoseguiridad.svg";
 
 export {
 
@@ -27,4 +32,10 @@ export {
     oclock,
     formPay,
     dolar,
+    lineadecredito,
+    fpAndfd,
+    portatil,
+    calendario,
+    manoseguridad,
+
 }
