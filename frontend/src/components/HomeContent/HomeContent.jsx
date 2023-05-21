@@ -2,7 +2,7 @@
 import React from 'react';
 import { AiOutlineArrowRight } from "react-icons/ai";
 import videoPrincipal from "../../assets/video/dashboard-xepelin.mp4";
-import { cmp, dolar, flesan, formPay, fpAndfd, izquierdo, lineadecredito, mega, oclock, sacyr, wom, portatil, calendario, manoseguridad } from '../../assets/images';
+import { cmp, dolar, flesan, formPay, fpAndfd, izquierdo, lineadecredito, mega, oclock, sacyr, wom, portatil, calendario, manoseguridad, zepelin } from '../../assets/images';
 import Button from "../button/Button.jsx";
 import Card from "../card/Card.jsx";
 
@@ -73,7 +73,7 @@ const HomeContent = () => {
                 </div>
             </div>
             
-            <div className='w-full px-10 mx-auto'>
+            <div className='w-full px-5 mx-auto'>
                 <div className='flex flex-col md:flex-row justify-center items-center bg-white py-6 px-2 rounded-xl'>
                     <h2 className='my-2 mx-2'>
                     Explora nuestro producto:
@@ -89,7 +89,7 @@ const HomeContent = () => {
                 </div>
             </div>
 
-            <div className='w-full p-10 mx-auto mt-10'>
+            <div className='w-full p-5 mx-auto mt-10'>
                 <div className=' bg-white p-[2rem] rounded-xl'>
                     <h2 style={backgroundTexto} className='font-bold text-[1.25rem]'>
                         Una plataforma de pago totalmente integral
@@ -152,7 +152,7 @@ const HomeContent = () => {
         </div>
 
 
-        <div className='w-full p-10 mx-auto mt-2 rounded-xl'>
+        <div className='w-full p-5 mx-auto mt-2 rounded-xl'>
                     
                     <div className='grid gap-3 grid-cols-1 md:grid-cols-2 pt-6'>
                     
@@ -178,16 +178,16 @@ const HomeContent = () => {
                 
         </div>
 
-        <div className='w-full p-10 mx-auto mt-2 rounded-xl'>
+        <div className='w-full p-5 mx-auto mt-2 rounded-xl'>
                     <h2 className='text-center text-[1.75rem] md:text-[2.5rem] font-[600] my-10'>
-                    Una plataforma de pagos apalancada en tecnología
+                        Una plataforma de pagos apalancada en tecnología
                     </h2>
                     <div className='grid gap-10 grid-cols-1 md:grid-cols-2 pt-6'>
 
                         <div className='col-span-1'>
                             <Card>
                                 <div className='p-8 rounded-2xl'>
-                                    <div className='flex justify-start items-center'>
+                                    <div className=''>
                                         <img src={portatil} alt='oclock' className='mx-1'/>
                                         <h2 className='font-bold text-[1.75rem] mx-1'>
                                             Servicio 100% Digital
@@ -204,7 +204,7 @@ const HomeContent = () => {
                         <div className='col-span-1'>
                             <Card>
                                 <div className='p-8 rounded-2xl'>
-                                    <div className='flex justify-start items-center'>
+                                    <div className=''>
                                         <img src={calendario} alt='calendario' className='mx-1'/>
                                         <h2 className='font-bold text-[1.75rem] mx-1'>
                                             Aprobación inmediata
@@ -221,7 +221,7 @@ const HomeContent = () => {
                         <div className='col-span-1'>
                             <Card>
                                 <div className='p-8 rounded-2xl'>
-                                    <div className='flex justify-start items-center'>
+                                    <div className=''>
                                         <img src={manoseguridad} alt='manoseguridad' className='mx-1'/>
                                         <h2 className='font-bold text-[1.75rem] mx-1'>
                                         Proceso 100% seguro
@@ -238,7 +238,7 @@ const HomeContent = () => {
                         <div className='col-span-1'>
                             <Card>
                                 <div className='p-8 rounded-2xl'>
-                                    <div className='flex justify-start items-center'>
+                                    <div className=''>
                                         <img src={oclock} alt='oclock' className='mx-1'/>
                                         <h2 className='font-bold text-[1.75rem] mx-1'>
                                             Financiamiento en 24 hrs
@@ -254,6 +254,26 @@ const HomeContent = () => {
                         
                     </div>
                 
+        </div>
+
+        <div className='w-full hs-screen py-5'>
+            <div className='flex justify-center items-center'>
+                <img src={zepelin} alt='zepelin' className='w-[7rem] '/>
+            </div>
+            <h2 className='text-[1.5rem] md:text-[2.5rem] text-center font-bold'>
+                Empieza en minutos
+            </h2>
+            <div className='text-center my-5'>
+                <Button>
+                    Conoce mas
+                </Button>
+
+                <p className='my-5'>
+                    ¿Ya tienes cuenta?  <span className='underline underline-offset-2 mx-2'>
+                    Ingresa aquí
+                    </span>
+                </p>
+            </div>
         </div>
     </main>
     )
