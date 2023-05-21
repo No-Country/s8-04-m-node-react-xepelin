@@ -1,22 +1,22 @@
 import React from 'react'
 import { zepelin } from '../../assets/images'
+import { Link } from 'react-router-dom'
 
 function Footer() {
     return (
 
         <footer className="relative bottom-0 left-0 right-0 bg-neutral-50  dark:bg-gray-900">
-
             <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
-
                 <div className="md:flex md:justify-around">
-
-                    <div className="mb-6 md:mb-0">
-                        <a href="https://flowbite.com/" className="flex items-center">
-                        <img src={zepelin} className="h-8 mr-3" alt="Flowbite Logo" />
-                            <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Zepellin</span>
-                        </a>
-                    </div>
-
+                    
+                    <Link to={"/"}>
+                        <div className="mb-6 md:mb-0">
+                            <div className="flex items-center">
+                            <img src={zepelin} className="h-8 mr-3" alt="Flowbite Logo" />
+                                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Zepellin</span>
+                            </div>
+                        </div>
+                    </Link>
                     <div className="grid grid-cols-2 gap-8 sm:gap-6 sm:grid-cols-4">
                         <div>
                             <h2 className="mb-6 text-sm font-semibold text-gray-900  dark:text-white">Cuentas por cobrar</h2>
