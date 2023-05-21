@@ -2,9 +2,11 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import { FaCity } from "react-icons/fa";
+import Modal from "./Modal";
 const RegisterForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword1, setShowPassword1] = useState(false);
+  const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
 
   const handlePrev = () => {
@@ -243,13 +245,17 @@ const RegisterForm = () => {
               <button
                 type="button"
                 disabled={isSubmitting}
-                onClick={handleNext}
+                onClick={()=> setShowModal(true)}
                 className="mt-3 py-4  w-full bg-Primary-100 rounded-lg text-xl text-white font-semibold"
               >
                 Siguiente
               </button>
             </div>
           )}
+          <Modal isOpen={showModal} onClose={() =>setShowModal(false)}/>
+       
+  
+    
         </Form>
       )}
     </Formik>
