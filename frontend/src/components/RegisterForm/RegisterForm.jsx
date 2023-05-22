@@ -39,7 +39,7 @@ const RegisterForm = () => {
       {({ isSubmitting }) => (
         <Form>
           {currentPage === 1 && (
-            <div className="p-4">
+            <div className="p-4 sm:w-3/4 sm:mx-auto md:w-1/3 md:mx-auto">
               <div className="text-Primary-50 text-center pt-8 pb-8 font-medium">
                 Paso 1 de 3
               </div>
@@ -111,7 +111,7 @@ const RegisterForm = () => {
             </div>
           )}
           {currentPage === 2 && (
-            <div className="p-4">
+            <div className="p-4  md:w-1/3 md:mx-auto">
               <div className="text-Primary-50 text-center pt-8 pb-8 font-medium">
                 Paso 2 de 3
               </div>
@@ -170,7 +170,7 @@ const RegisterForm = () => {
             </div>
           )}
           {currentPage === 3 && (
-            <div className="p-4">
+            <div className="p-4 sm:w-3/4 sm:mx-auto md:w-1/3 md:mx-auto">
               <div className="text-Primary-50 text-center pt-8 pb-8 font-medium">
                 Paso 3 de 3
               </div>
@@ -246,7 +246,7 @@ const RegisterForm = () => {
                 type="button"
                 disabled={isSubmitting}
                 onClick={()=> setShowModal(true)}
-                className="mt-3 py-4  w-full bg-Primary-100 rounded-lg text-xl text-white font-semibold"
+                className="mt-3 py-4 mb-6 w-full bg-Primary-100 rounded-lg text-xl text-white font-semibold"
               >
                 Siguiente
               </button>
