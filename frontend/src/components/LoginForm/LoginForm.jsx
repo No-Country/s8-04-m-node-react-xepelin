@@ -7,7 +7,8 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   return (
     <div className="bg-Blanco">
-      <div className="flex justify-center pt-24 pb-4">
+    <div className="md:w-1/3 md:mx-auto">
+      <div className="flex justify-center pt-24 pb-4 ">
         <button
           id="dropdownDividerButton"
           data-dropdown-toggle="dropdownDivider"
@@ -124,6 +125,7 @@ const LoginForm = () => {
           </Form>
         )}
       </Formik>
+    </div>
     </div>
   );
 };
