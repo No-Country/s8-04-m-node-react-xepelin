@@ -16,6 +16,7 @@ export default {
         'Blanco' : '#F5F5F5',
         "Violeta-xe":"#eb5cd1",
         "Naraja-xe":"#fc831c",
+        "Azul-mision": "#1D2856"
       }
     },
   },

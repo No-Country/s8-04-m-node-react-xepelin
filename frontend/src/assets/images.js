@@ -18,7 +18,10 @@ import fpAndfd from "./Home/fpAndfd.svg";
 import portatil from "./Home/portatil.svg";
 import calendario from "./Home/calendario.svg";
 import manoseguridad from "./Home/manoseguiridad.svg";
-
+import mision_img_group from "./Mision/Mision_img_gropu.jpg"
+import gastos_finanzas from "./Mision/Finance app_Flatline.svg"
+import limitacces from "./Mision/dashboard-warning.webp"
+import experiencianaloga from "./Mision/phone-checklist.png"
 export {
 
     zepelin,
@@ -37,5 +40,9 @@ export {
     portatil,
     calendario,
     manoseguridad,
+    mision_img_group,
+    gastos_finanzas,
+    limitacces,
+    experiencianaloga
 
 }
