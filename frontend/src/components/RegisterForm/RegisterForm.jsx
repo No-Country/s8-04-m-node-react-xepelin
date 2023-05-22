@@ -51,7 +51,7 @@ const RegisterForm = () => {
                 Puedes Seleccionar mas de una
               </div>
               <div className="flex flex-col mt-3 gap-y-4">
-                <div className="flex  items-center px-4 py-2 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
+                <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
                     name="soluciones"
@@ -59,7 +59,7 @@ const RegisterForm = () => {
                   />
                   <label className="ml-2">Gestionar tu flujo de caja</label>
                 </div>
-                <div className="flex  items-center px-4 py-2 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
+                <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
                     name="soluciones"
@@ -69,7 +69,7 @@ const RegisterForm = () => {
                     Financiar y programar tus pagos
                   </label>
                 </div>
-                <div className="flex  items-center px-4 py-2 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
+                <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
                     name="soluciones"
@@ -80,7 +80,7 @@ const RegisterForm = () => {
                   </label>
                 </div>
                 <ErrorMessage name="soluciones" component="div" />
-                <div className="flex  items-center px-4 py-2 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
+                <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field type="checkbox" name="otra" value="otra" />
                   <label className="ml-2">Otra</label>
                 </div>
@@ -183,7 +183,7 @@ const RegisterForm = () => {
                   type="text"
                   name="email"
                   required
-                  className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
+                  className="mt-2 py-4 px-4 rounded-lg border border-zinc-400"
                   placeholder="Ingresa correo de empresa"
                 />
                 <ErrorMessage name="email" component="div" />
@@ -195,12 +195,12 @@ const RegisterForm = () => {
                     type={showPassword ? "text" : "password"}
                     name="password"
                     required
-                    className="w-full mt-2 py-2 px-4 rounded-lg border border-zinc-400"
+                    className="w-full mt-2 py-4 px-4 rounded-lg border border-zinc-400"
                     placeholder="Ingresa contraseña"
                   />
                   <button
                     type="button"
-                    className="absolute right-2 top-5"
+                    className="absolute right-2 top-7"
                     onClick={() => setShowPassword(!showPassword)}
                   >
                     {showPassword ? <RiEyeCloseLine /> : <RiEyeLine />}
@@ -217,12 +217,12 @@ const RegisterForm = () => {
                     type={showPassword1 ? "text" : "password"}
                     name="confirmPassword"
                     required
-                    className="w-full mt-2 py-2 px-4 rounded-lg border border-zinc-400"
+                    className="w-full mt-2 py-4 px-4 rounded-lg border border-zinc-400"
                     placeholder="Ingresa contraseña"
                   />
                   <button
                     type="button"
-                    className="absolute right-2 top-5"
+                    className="absolute right-2 top-7"
                     onClick={() => setShowPassword1(!showPassword1)}
                   >
                     {showPassword1 ? <RiEyeCloseLine /> : <RiEyeLine />}
