@@ -1,8 +1,8 @@
 import {
   mision_img_group,
   gastos_finanzas,
-  limitacces,
-  experiencianaloga,
+  acceslimit,
+  todolist,
 } from "../assets/images";
 const Mision = () => {
   return (
