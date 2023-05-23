@@ -1,8 +1,22 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-
+import { useDispatch } from "react-redux";
+import { registeruser } from "../../Redux/auth/authSlice";
 // eslint-disable-next-line react/prop-types
-const Modal = ({ isOpen, onClose }) => {
+const Modal = ({ isOpen, onClose, formValues }) => {
+  console.log(formValues, "formikValues");
+  const dispatch = useDispatch();
   if (!isOpen) return null;
+
+  const handleSubmit = (values) => {
+    console.log(formValues, "valores de formik values");
+    console.log(values, "values");
+    const combinedValues = {
+      ...formValues,
+      ...values,
+    };
+    console.log(combinedValues, "combined");
+    dispatch(registeruser(combinedValues));
+  };
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center">
@@ -29,83 +43,92 @@ const Modal = ({ isOpen, onClose }) => {
         <div>
           <Formik
             initialValues={{
-              telefono: "",
+              contact: "",
               rutEmpresa: "",
               razonSocial: "",
               nombreCompleto: "",
-            }}
-            onSubmit={(values, { setSubmitting }) => {
-              console.log(values);
-              setSubmitting(false);
+              address: "",
             }}
           >
-            {({ isSubmitting }) => (
+            {({ isSubmitting, values }) => (
               <Form>
-                   <div className="p-4 ">
-            <div className="text-2xl font-semibold mb-4 text-center">
-              Finaliza tu registro
-            </div>
-            <div className="text-center">
-                completa la informacion solicitada para completar tu perfil y solicitar financiamientos
-            </div>
-            <div className="flex flex-col gap-y-4">
-              <div className="flex flex-col">
-                <label htmlFor="telefono">Telefono</label>
-                <Field
-                  type="text"
-                  name="telefono"
-                  required
-                  className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
-                  placeholder="Ingresa tunúmero de teléfono"
-                />
-                <ErrorMessage name="telefono" component="div" />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="rutEmpresa">RUT Empresa</label>
-                <Field
-                  type="text"
-                  name="rutEmpresa"
-                  required
-                  className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
-                  placeholder="Ingresa el RUT de tu empresa"
-                />
-                <ErrorMessage name="rutEmpresa" component="div" />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="razonSocial">Razón Social</label>
-                <Field
-                  type="text"
-                  name="razonSocial"
-                  required
-                  className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
-                  placeholder="Ingresa la razón social de tu empresa"
-                />
-                <ErrorMessage name="razonSocial" component="div" />
-              </div>
-              <div className="flex flex-col">
-                <label htmlFor="nombreCompleto">Nombre Completo</label>
-                <Field
-                  type="text"
-                  name="nombreCompleto"
-                  required
-                  className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
-                  placeholder="Ingresa tu nombre completo"
-                />
-                <ErrorMessage name="nombreCompleto" component="div" />
-              </div>
-              <button
-                type="submit"
-                className="mt-5 py-4  w-full bg-Primary-100 rounded-lg text-xl text-white font-semibold"
-                disabled={isSubmitting}
-              >
-                Finalizar Registro
-              </button>
-            </div>
-          </div>
+                <div className="p-4 ">
+                  <div className="text-2xl font-semibold mb-4 text-center">
+                    Finaliza tu registro
+                  </div>
+                  <div className="text-center">
+                    completa la informacion solicitada para completar tu perfil
+                    y solicitar financiamientos
+                  </div>
+                  <div className="flex flex-col gap-y-4">
+                    <div className="flex flex-col">
+                      <label htmlFor="contact">Telefono</label>
+                      <Field
+                        type="text"
+                        name="contact"
+                        required
+                        className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
+                        placeholder="Ingresa tunúmero de teléfono"
+                      />
+                      <ErrorMessage name="contact" component="div" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="rutEmpresa">RUT Empresa</label>
+                      <Field
+                        type="text"
+                        name="rutEmpresa"
+                        required
+                        className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
+                        placeholder="Ingresa el RUT de tu empresa"
+                      />
+                      <ErrorMessage name="rutEmpresa" component="div" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="razonSocial">Razón Social</label>
+                      <Field
+                        type="text"
+                        name="razonSocial"
+                        required
+                        className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
+                        placeholder="Ingresa la razón social de tu empresa"
+                      />
+                      <ErrorMessage name="razonSocial" component="div" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="nombreCompleto">Nombre Completo</label>
+                      <Field
+                        type="text"
+                        name="nombreCompleto"
+                        required
+                        className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
+                        placeholder="Ingresa tu nombre completo"
+                      />
+                      <ErrorMessage name="nombreCompleto" component="div" />
+                    </div>
+                    <div className="flex flex-col">
+                      <label htmlFor="address">Direccion</label>
+                      <Field
+                        type="text"
+                        name="address"
+                        required
+                        className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
+                        placeholder="Ingresa tu Direccion"
+                      />
+                      <ErrorMessage name="address" component="div" />
+                    </div>
+                    <button
+                      type="button"
+                      className="mt-5 py-4  w-full bg-Primary-100 rounded-lg text-xl text-white font-semibold"
+                      disabled={isSubmitting}
+                      onClick={() => handleSubmit(values)}
+                    >
+                      Finalizar Registro
+                    </button>
+                  </div>
+                </div>
               </Form>
             )}
           </Formik>
-      
         </div>
       </div>
     </div>

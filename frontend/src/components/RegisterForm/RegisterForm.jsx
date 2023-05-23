@@ -1,4 +1,4 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import { FaCity } from "react-icons/fa";
@@ -8,13 +8,17 @@ const RegisterForm = () => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-
+  const [formValuesData, setFormValues] = useState(null);
   const handlePrev = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
-
+const openmodal = (values)=> {
+  setShowModal(true)
+  console.log(values, "valores")
+  setFormValues(values)
+}
   const handleNext = () => {
     if (currentPage < 3) {
       setCurrentPage(currentPage + 1);
@@ -22,7 +26,8 @@ const RegisterForm = () => {
   };
 
   return (
-    <Formik
+    <div>
+          <Formik
       initialValues={{
         email: "",
         password: "",
@@ -30,13 +35,11 @@ const RegisterForm = () => {
         soluciones: [],
         ventaAnual: "",
         tipoOrganizacion: "",
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
-        setSubmitting(false);
+        firstName: "",
+        lastName: "",
       }}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, values }) => (
         <Form>
           {currentPage === 1 && (
             <div className="p-4 sm:w-3/4 sm:mx-auto md:w-1/3 md:mx-auto">
@@ -123,7 +126,9 @@ const RegisterForm = () => {
                 <div className="flex flex-col m-4 w-1/2 items-center px-4 py-2 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <FaCity size={60} />
                   <label>Empresa</label>
-                  <label className="text-center">(Menos de $3.2 Mil Millones)</label>
+                  <label className="text-center">
+                    (Menos de $3.2 Mil Millones)
+                  </label>
                   <Field
                     type="checkbox"
                     name="tipoOrganizacion"
@@ -132,9 +137,11 @@ const RegisterForm = () => {
                   />
                 </div>
                 <div className="flex flex-col m-4 w-1/2 items-center px-4 py-2 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
-                  <FaCity size={60}/>
+                  <FaCity size={60} />
                   <label>Corporativo</label>
-                  <label className="text-center">(Mas de $3.2 Mil Millones)</label>
+                  <label className="text-center">
+                    (Mas de $3.2 Mil Millones)
+                  </label>
                   <Field
                     type="checkbox"
                     name="tipoOrganizacion"
@@ -176,6 +183,28 @@ const RegisterForm = () => {
               </div>
               <div className="text-center text-2xl pt-3 pb-3 font-semibold">
                 Crear Cuenta
+              </div>
+              <div className="flex flex-col mt-3">
+                <label htmlFor="lastName">Nombre</label>
+                <Field
+                  type="text"
+                  name="lastName"
+                  required
+                  className="mt-2 py-4 px-4 rounded-lg border border-zinc-400"
+                  placeholder="Ingresa Nombre"
+                />
+                <ErrorMessage name="lastName" component="div" />
+              </div>
+              <div className="flex flex-col mt-3">
+                <label htmlFor="firstName">Apellido</label>
+                <Field
+                  type="text"
+                  name="firstName"
+                  required
+                  className="mt-2 py-4 px-4 rounded-lg border border-zinc-400"
+                  placeholder="Ingresa Nombre"
+                />
+                <ErrorMessage name="firstName" component="div" />
               </div>
               <div className="flex flex-col mt-3">
                 <label htmlFor="email">Correo Electronico</label>
@@ -245,20 +274,22 @@ const RegisterForm = () => {
               <button
                 type="button"
                 disabled={isSubmitting}
-                onClick={()=> setShowModal(true)}
+               onClick={()=>openmodal(values)}
                 className="mt-3 py-4 mb-6 w-full bg-Primary-100 rounded-lg text-xl text-white font-semibold"
               >
                 Siguiente
               </button>
             </div>
           )}
-          <Modal isOpen={showModal} onClose={() =>setShowModal(false)}/>
-       
-  
-    
+          
         </Form>
       )}
     </Formik>
+    {showModal ? (<Modal isOpen={showModal} onClose={() => setShowModal(false)} formValues={formValuesData} />): null}
+    
+
+    </div>
+
   );
 };
 
