@@ -1,8 +1,9 @@
 import {
   mision_img_group,
   gastos_finanzas,
-  limitacces,
-  experiencianaloga,
+
+  todolist,
+  acceslimit,
 } from "../assets/images";
 const Mision = () => {
   return (
@@ -13,10 +14,10 @@ const Mision = () => {
           servicios financieros para todas las empresas
         </div>
         <div className="flex flex-col sm:flex-row-reverse gap-10 items-center">
-          <img src={mision_img_group} alt="" className="rounded-3xl sm:w-2/4 sm:h-auto" />
+          <img src={mision_img_group} alt="" className="rounded-3xl sm:w-3/5 sm:h-3/4" />
           <div>
             <div>
-              <div className="mt-5 text-lg">
+              <div className="mt-5 text-xl">
                 Somos una empresa de tecnología que otorga{" "}
                 <span className="font-semibold">servicios financieros</span> a
                 través de una{" "}
@@ -60,7 +61,7 @@ const Mision = () => {
           </div>
           <div className="flex flex-col md:flex-row gap-5 mb-16">
           <div className="bg-Azul-mision rounded-2xl p-5 mt-8">
-            <img src={limitacces} alt="" className="w-72 h-80" />
+            <img src={acceslimit} alt="Acceso limitado" className="w-72 h-80 mx-auto" />
             <div className="text-Blanco mt-5">
               <div className="mb-2 font-bold text-2xl">Acceso limitado</div>
               <div className="mt-3 text-lg">
@@ -70,7 +71,7 @@ const Mision = () => {
             </div>
           </div>
           <div className="bg-Violeta-xe mt-8 rounded-2xl p-6">
-            <img src={experiencianaloga} alt="" className="w-72 h-80" />
+            <img src={todolist} alt="Experiencia analoga" className="w-72 h-80 mx-auto" />
             <div className="text-Blanco mt-4">
               <div className="font-bold text-2xl">Experiencia analoga</div>
               <div className="text-lg mt-6">
