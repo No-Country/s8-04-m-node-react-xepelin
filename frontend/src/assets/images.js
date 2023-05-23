@@ -24,6 +24,7 @@ import limitacces from "./Mision/dashboard-warning.webp"
 import experiencianaloga from "./Mision/phone-checklist.png"
 import acceslimit from "./Mision/undraw_access_denied_re_awnf.svg"
 import todolist from "./Mision/undraw_team_goals_re_4a3t.svg"
+
 export {
 
     zepelin,
@@ -47,6 +48,6 @@ export {
     limitacces,
     experiencianaloga,
     acceslimit,
-    todolist
+    todolist,
 
 }
