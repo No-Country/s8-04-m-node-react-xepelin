@@ -48,53 +48,62 @@ export class AuthService {
       this.handleDBError(error);
     }
   }
-  async login(loginAuthDto:LoginUserDto){
-    try{
-      const {email,password} = loginAuthDto;
-      const findUser = await this.userModel.findOne({email}).select('-password');
-      const findbyPass = await this.userModel.findOne({email});
+  async login(loginAuthDto: LoginUserDto) {
+    try {
+      const { email, password } = loginAuthDto;
+      const findUser = await this.userModel
+        .findOne({ email })
+        .select('-password');
+      const findbyPass = await this.userModel.findOne({ email });
 
-      if(!findUser){
+      if (!findUser) {
         throw new HttpException('USER_NOT_FOUND', HttpStatus.NOT_FOUND);
       }
-      const comparePassword = await bcrypt.compare(password,findbyPass.password);
 
-      if(!comparePassword){
+      const comparePassword = await bcrypt.compare(
+        password,
+        findbyPass.password,
+      );
+
+      if (!comparePassword) {
         throw new HttpException('PASSWORD_INCORRECT', HttpStatus.FORBIDDEN);
       }
 
-      const payload = { id:findUser._id, firstname:findUser.firstName};
+      const payload = { id: findUser._id, firstname: findUser.firstName };
       const token = this.jwtService.sign(payload);
 
       const data = {
         user: findUser,
-        token: token
-      }
+        token: token,
+      };
 
-      return data
-
-    }catch(error){
+      return data;
+    } catch (error) {
       this.handleDBError(error);
     }
   }
 
-  async updateUser(id:string, updateUserDto:UpdateUserDto){
-   const userUpdate = await this.userModel.findByIdAndUpdate(id, updateUserDto,{new:true});
-   
-   if (!userUpdate) {
-    throw new HttpException('User not found', HttpStatus.NOT_FOUND);
-   }
-   if (updateUserDto.password) {
-      const hashedPassword =bcrypt.hashSync(userUpdate.password, 10); 
-      userUpdate.password = hashedPassword; 
-   }
+  async updateUser(id: string, updateUserDto: UpdateUserDto) {
+    const userUpdate = await this.userModel.findByIdAndUpdate(
+      id,
+      updateUserDto,
+      { new: true },
+    );
 
-   const userSave = await userUpdate.save();
+    if (!userUpdate) {
+      throw new HttpException('User not found', HttpStatus.NOT_FOUND);
+    }
+    if (updateUserDto.password) {
+      const hashedPassword = bcrypt.hashSync(userUpdate.password, 10);
+      userUpdate.password = hashedPassword;
+    }
 
-   if(userSave && userSave.password){
-    userUpdate.password =undefined
-   }
-   return userSave
+    const userSave = await userUpdate.save();
+
+    if (userSave && userSave.password) {
+      userUpdate.password = undefined;
+    }
+    return userSave;
   }
   // async update(id: string, updateUserDto: UpdateUserDto) {
   //   const user = this.userModel.findOne({ where: { id } });
@@ -184,9 +193,6 @@ export class AuthService {
   private handleDBError(error: any): never {
     if (error.code === 11000)
       throw new BadRequestException(`${error.keyValue['email']} exists`);
-
-    console.log(error);
-
-    throw new InternalServerErrorException('Please check your logs');
+    throw new HttpException(error.response, error.status);
   }
 }
