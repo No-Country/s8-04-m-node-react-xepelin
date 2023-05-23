@@ -21,7 +21,7 @@ yarn install
 6. Ejecutar el siguiente comando:
 
 ```
-docker-compose -up -d
+docker-compose -f docker-compose.dev.yml up -d
 ```
 
 7. Ejecutar la aplicación en dev:
