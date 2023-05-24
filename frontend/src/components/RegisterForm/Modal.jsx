@@ -88,7 +88,7 @@ const Modal = ({ isOpen, onClose, formValues }) => {
                       <label htmlFor="rutEmpresa">RUT Empresa</label>
                       <Field
                         type="text"
-                        name="rutEmpresa"
+                        // name="rutEmpresa"
                         required
                         className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
                         placeholder="Ingresa el RUT de tu empresa"

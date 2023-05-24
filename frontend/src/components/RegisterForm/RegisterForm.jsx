@@ -76,7 +76,7 @@ const RegisterForm = () => {
                   <Field
                     type="checkbox"
                     // name="soluciones"
-                    // value="gestionar-flujo"
+                    value="gestionar-flujo"
                   />
                   <label className="ml-2">Gestionar tu flujo de caja</label>
                 </div>
@@ -84,7 +84,7 @@ const RegisterForm = () => {
                   <Field
                     type="checkbox"
                     // name="soluciones"
-                    // value="financiar-pagos"
+                    value="financiar-pagos"
                   />
                   <label className="ml-2">
                     Financiar y programar tus pagos
@@ -94,7 +94,7 @@ const RegisterForm = () => {
                   <Field
                     type="checkbox"
                     // name="soluciones"
-                    // value="adelantar-cobro"
+                    value="adelantar-cobro"
                   />
                   <label className="ml-2">
                     Adelantar el cobro de tus facturas
@@ -150,7 +150,7 @@ const RegisterForm = () => {
                   <Field
                     type="checkbox"
                     // name="tipoOrganizacion"
-                    // value="empresa"
+                    value="empresa"
                     className="rounded-full h-5 w-5"
                   />
                 </div>
@@ -163,7 +163,7 @@ const RegisterForm = () => {
                   <Field
                     type="checkbox"
                     // name="tipoOrganizacion"
-                    // value="corporativo"
+                    value="corporativo"
                     className="rounded-full h-5 w-5"
                   />
                 </div>
