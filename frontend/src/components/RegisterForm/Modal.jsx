@@ -1,10 +1,22 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { registeruser } from "../../Redux/auth/authSlice";
+import { IconContext } from "react-icons";
+import { FaSpinner } from "react-icons/fa";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 // eslint-disable-next-line react/prop-types
 const Modal = ({ isOpen, onClose, formValues }) => {
   console.log(formValues, "formikValues");
+  const navigate = useNavigate();
+  const loading = useSelector((state) => state.user.statusRegister);
+  console.log(loading, "loading");
   const dispatch = useDispatch();
+  useEffect(() => {
+    if (loading === "registered") {
+      navigate("/profile");
+    }
+  });
   if (!isOpen) return null;
 
   const handleSubmit = (values) => {
@@ -44,9 +56,9 @@ const Modal = ({ isOpen, onClose, formValues }) => {
           <Formik
             initialValues={{
               contact: "",
-              rutEmpresa: "",
-              razonSocial: "",
-              nombreCompleto: "",
+              // rutEmpresa: "",
+              // razonSocial: "",
+              // nombreCompleto: "",
               address: "",
             }}
           >
@@ -87,7 +99,7 @@ const Modal = ({ isOpen, onClose, formValues }) => {
                       <label htmlFor="razonSocial">Razón Social</label>
                       <Field
                         type="text"
-                        name="razonSocial"
+                        // name="razonSocial"
                         required
                         className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
                         placeholder="Ingresa la razón social de tu empresa"
@@ -98,7 +110,7 @@ const Modal = ({ isOpen, onClose, formValues }) => {
                       <label htmlFor="nombreCompleto">Nombre Completo</label>
                       <Field
                         type="text"
-                        name="nombreCompleto"
+                        // name="nombreCompleto"
                         required
                         className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
                         placeholder="Ingresa tu nombre completo"
@@ -122,7 +134,17 @@ const Modal = ({ isOpen, onClose, formValues }) => {
                       disabled={isSubmitting}
                       onClick={() => handleSubmit(values)}
                     >
-                      Finalizar Registro
+                      {loading === "checking" ? (
+                        <div className="flex justify-center items-center h-full">
+                          <IconContext.Provider
+                            value={{ className: "spinner-icon animate-spin" }}
+                          >
+                            <FaSpinner />
+                          </IconContext.Provider>
+                        </div>
+                      ) : (
+                        "Finalizar Registro"
+                      )}
                     </button>
                   </div>
                 </div>

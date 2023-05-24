@@ -1,3 +1,4 @@
+import * as Yup from 'yup';
 import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
@@ -9,16 +10,32 @@ const RegisterForm = () => {
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [formValuesData, setFormValues] = useState(null);
+
+  const validationSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(8, 'La contraseña debe tener al menos 8 caracteres')
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        'La contraseña debe tener al menos una letra mayúscula, una letra minúscula, numeros y un carácter especial'
+      )
+      .required('La contraseña es requerida'),
+  });
+
   const handlePrev = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
-const openmodal = (values)=> {
-  setShowModal(true)
-  console.log(values, "valores")
-  setFormValues(values)
-}
+  const openmodal = async (values) => {
+    try {
+      await validationSchema.validate(values, { abortEarly: false });
+      setShowModal(true);
+      setFormValues(values);
+    } catch (error) {
+      // Manejar el error de validación de la clave aquí
+      console.error("error");
+    }
+  };
   const handleNext = () => {
     if (currentPage < 3) {
       setCurrentPage(currentPage + 1);
@@ -31,13 +48,14 @@ const openmodal = (values)=> {
       initialValues={{
         email: "",
         password: "",
-        confirmPassword: "",
-        soluciones: [],
-        ventaAnual: "",
-        tipoOrganizacion: "",
+        // confirmPassword: "",
+        // soluciones: [],
+        // ventaAnual: "",
+        // tipoOrganizacion: "",
         firstName: "",
         lastName: "",
       }}
+      validationSchema={validationSchema}
     >
       {({ isSubmitting, values }) => (
         <Form>
@@ -57,16 +75,16 @@ const openmodal = (values)=> {
                 <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
-                    name="soluciones"
-                    value="gestionar-flujo"
+                    // name="soluciones"
+                    // value="gestionar-flujo"
                   />
                   <label className="ml-2">Gestionar tu flujo de caja</label>
                 </div>
                 <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
-                    name="soluciones"
-                    value="financiar-pagos"
+                    // name="soluciones"
+                    // value="financiar-pagos"
                   />
                   <label className="ml-2">
                     Financiar y programar tus pagos
@@ -75,8 +93,8 @@ const openmodal = (values)=> {
                 <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
-                    name="soluciones"
-                    value="adelantar-cobro"
+                    // name="soluciones"
+                    // value="adelantar-cobro"
                   />
                   <label className="ml-2">
                     Adelantar el cobro de tus facturas
@@ -131,8 +149,8 @@ const openmodal = (values)=> {
                   </label>
                   <Field
                     type="checkbox"
-                    name="tipoOrganizacion"
-                    value="empresa"
+                    // name="tipoOrganizacion"
+                    // value="empresa"
                     className="rounded-full h-5 w-5"
                   />
                 </div>
@@ -144,8 +162,8 @@ const openmodal = (values)=> {
                   </label>
                   <Field
                     type="checkbox"
-                    name="tipoOrganizacion"
-                    value="corporativo"
+                    // name="tipoOrganizacion"
+                    // value="corporativo"
                     className="rounded-full h-5 w-5"
                   />
                 </div>
@@ -244,7 +262,7 @@ const openmodal = (values)=> {
                 <div className="relative">
                   <Field
                     type={showPassword1 ? "text" : "password"}
-                    name="confirmPassword"
+                    // name="confirmPassword"
                     required
                     className="w-full mt-2 py-4 px-4 rounded-lg border border-zinc-400"
                     placeholder="Ingresa contraseña"
