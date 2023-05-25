@@ -1,4 +1,5 @@
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import * as Yup from 'yup';
+import { Formik, Form, Field, ErrorMessage} from "formik";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import { FaCity } from "react-icons/fa";
@@ -8,13 +9,33 @@ const RegisterForm = () => {
   const [showPassword1, setShowPassword1] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [formValuesData, setFormValues] = useState(null);
+
+  const validationSchema = Yup.object().shape({
+    password: Yup.string()
+      .min(8, 'La contraseña debe tener al menos 8 caracteres')
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+        'La contraseña debe tener al menos una letra mayúscula, una letra minúscula, numeros y un carácter especial'
+      )
+      .required('La contraseña es requerida'),
+  });
 
   const handlePrev = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
-
+  const openmodal = async (values) => {
+    try {
+      await validationSchema.validate(values, { abortEarly: false });
+      setShowModal(true);
+      setFormValues(values);
+    } catch (error) {
+      // Manejar el error de validación de la clave aquí
+      console.error("error");
+    }
+  };
   const handleNext = () => {
     if (currentPage < 3) {
       setCurrentPage(currentPage + 1);
@@ -22,21 +43,21 @@ const RegisterForm = () => {
   };
 
   return (
-    <Formik
+    <div>
+          <Formik
       initialValues={{
         email: "",
         password: "",
-        confirmPassword: "",
-        soluciones: [],
-        ventaAnual: "",
-        tipoOrganizacion: "",
+        // confirmPassword: "",
+        // soluciones: [],
+        // ventaAnual: "",
+        // tipoOrganizacion: "",
+        firstName: "",
+        lastName: "",
       }}
-      onSubmit={(values, { setSubmitting }) => {
-        console.log(values);
-        setSubmitting(false);
-      }}
+      validationSchema={validationSchema}
     >
-      {({ isSubmitting }) => (
+      {({ isSubmitting, values }) => (
         <Form>
           {currentPage === 1 && (
             <div className="p-4 sm:w-3/4 sm:mx-auto md:w-1/3 md:mx-auto">
@@ -54,7 +75,7 @@ const RegisterForm = () => {
                 <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
-                    name="soluciones"
+                    // name="soluciones"
                     value="gestionar-flujo"
                   />
                   <label className="ml-2">Gestionar tu flujo de caja</label>
@@ -62,7 +83,7 @@ const RegisterForm = () => {
                 <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
-                    name="soluciones"
+                    // name="soluciones"
                     value="financiar-pagos"
                   />
                   <label className="ml-2">
@@ -72,7 +93,7 @@ const RegisterForm = () => {
                 <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <Field
                     type="checkbox"
-                    name="soluciones"
+                    // name="soluciones"
                     value="adelantar-cobro"
                   />
                   <label className="ml-2">
@@ -123,21 +144,25 @@ const RegisterForm = () => {
                 <div className="flex flex-col m-4 w-1/2 items-center px-4 py-2 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
                   <FaCity size={60} />
                   <label>Empresa</label>
-                  <label className="text-center">(Menos de $3.2 Mil Millones)</label>
+                  <label className="text-center">
+                    (Menos de $3.2 Mil Millones)
+                  </label>
                   <Field
                     type="checkbox"
-                    name="tipoOrganizacion"
+                    // name="tipoOrganizacion"
                     value="empresa"
                     className="rounded-full h-5 w-5"
                   />
                 </div>
                 <div className="flex flex-col m-4 w-1/2 items-center px-4 py-2 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
-                  <FaCity size={60}/>
+                  <FaCity size={60} />
                   <label>Corporativo</label>
-                  <label className="text-center">(Mas de $3.2 Mil Millones)</label>
+                  <label className="text-center">
+                    (Mas de $3.2 Mil Millones)
+                  </label>
                   <Field
                     type="checkbox"
-                    name="tipoOrganizacion"
+                    // name="tipoOrganizacion"
                     value="corporativo"
                     className="rounded-full h-5 w-5"
                   />
@@ -178,6 +203,28 @@ const RegisterForm = () => {
                 Crear Cuenta
               </div>
               <div className="flex flex-col mt-3">
+                <label htmlFor="lastName">Nombre</label>
+                <Field
+                  type="text"
+                  name="lastName"
+                  required
+                  className="mt-2 py-4 px-4 rounded-lg border border-zinc-400"
+                  placeholder="Ingresa Nombre"
+                />
+                <ErrorMessage name="lastName" component="div" />
+              </div>
+              <div className="flex flex-col mt-3">
+                <label htmlFor="firstName">Apellido</label>
+                <Field
+                  type="text"
+                  name="firstName"
+                  required
+                  className="mt-2 py-4 px-4 rounded-lg border border-zinc-400"
+                  placeholder="Ingresa Nombre"
+                />
+                <ErrorMessage name="firstName" component="div" />
+              </div>
+              <div className="flex flex-col mt-3">
                 <label htmlFor="email">Correo Electronico</label>
                 <Field
                   type="text"
@@ -215,7 +262,7 @@ const RegisterForm = () => {
                 <div className="relative">
                   <Field
                     type={showPassword1 ? "text" : "password"}
-                    name="confirmPassword"
+                    // name="confirmPassword"
                     required
                     className="w-full mt-2 py-4 px-4 rounded-lg border border-zinc-400"
                     placeholder="Ingresa contraseña"
@@ -245,20 +292,22 @@ const RegisterForm = () => {
               <button
                 type="button"
                 disabled={isSubmitting}
-                onClick={()=> setShowModal(true)}
+               onClick={()=>openmodal(values)}
                 className="mt-3 py-4 mb-6 w-full bg-Primary-100 rounded-lg text-xl text-white font-semibold"
               >
                 Siguiente
               </button>
             </div>
           )}
-          <Modal isOpen={showModal} onClose={() =>setShowModal(false)}/>
-       
-  
-    
+          
         </Form>
       )}
     </Formik>
+    {showModal ? (<Modal isOpen={showModal} onClose={() => setShowModal(false)} formValues={formValuesData} />): null}
+    
+
+    </div>
+
   );
 };
 
