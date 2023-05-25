@@ -56,9 +56,9 @@ const Modal = ({ isOpen, onClose, formValues }) => {
           <Formik
             initialValues={{
               contact: "",
-              // rutEmpresa: "",
-              // razonSocial: "",
-              // nombreCompleto: "",
+              rutEmpresa: "",
+              razonSocial: "",
+              nombreCompleto: "",
               address: "",
             }}
           >
@@ -88,7 +88,7 @@ const Modal = ({ isOpen, onClose, formValues }) => {
                       <label htmlFor="rutEmpresa">RUT Empresa</label>
                       <Field
                         type="text"
-                        // name="rutEmpresa"
+                        name="rutEmpresa"
                         required
                         className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
                         placeholder="Ingresa el RUT de tu empresa"
@@ -99,7 +99,7 @@ const Modal = ({ isOpen, onClose, formValues }) => {
                       <label htmlFor="razonSocial">Razón Social</label>
                       <Field
                         type="text"
-                        // name="razonSocial"
+                        name="razonSocial"
                         required
                         className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
                         placeholder="Ingresa la razón social de tu empresa"
@@ -110,7 +110,7 @@ const Modal = ({ isOpen, onClose, formValues }) => {
                       <label htmlFor="nombreCompleto">Nombre Completo</label>
                       <Field
                         type="text"
-                        // name="nombreCompleto"
+                        name="nombreCompleto"
                         required
                         className="mt-2 py-2 px-4 rounded-lg border border-zinc-400"
                         placeholder="Ingresa tu nombre completo"
