@@ -25,7 +25,7 @@ export class CompaniesController {
   })
   @ApiResponse({
     status: 400,
-    description: 'Bad request (Company CUIT already exists)',
+    description: 'Bad request (Company RUT already exists)',
   })
   @Post()
   create(@Body() createCompanyDto: CreateCompanyDto) {

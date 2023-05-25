@@ -29,8 +29,8 @@ export class CompaniesService {
       );
       (await company).save();
       return await company;
-    } catch (error) {
-      throw new BadRequestException(`${error.keyValue['cuit']} already exists`);
+    } catch (error: any) {
+      throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
     }
   }
 
