@@ -1,4 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
+import axios from "axios"
+const apiUrl = import.meta.env.VITE_API_URL;
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
@@ -6,6 +8,8 @@ export const authSlice = createSlice({
         user: {},
         token: null,
         errorMessage: undefined,
+        statusRegister: "not-registered", // 'registered' , 'checking'
+        registerMessage: undefined
     },
     reducers: {
         onChecking: (state) => {
@@ -31,6 +35,20 @@ export const authSlice = createSlice({
             state.user = {}
             state.token = null
             state.errorMessage= undefined
+        },
+        onCheckingRegister: (state) => {
+            state.statusRegister = 'checking'
+            state.registerMessage = undefined
+        },
+        onRegister: (state, {payload}) => {
+            console.log(payload, "payload de register")
+            state.statusRegister = "registered"
+            state.registerMessage = undefined
+        },
+        onRegisterError: (state, {error}) => {
+            console.log(error, "error")
+            state.statusRegister = "not-registered"
+            state.registerMessage = error
         }
     }
 });
@@ -45,7 +63,21 @@ export const loginuser = (payload) => {
         }
     }
 }
+export const registeruser = (payload) => {
+    return async(dispatch)=> {
+        try {
+            dispatch({type: onCheckingRegister})
+            const data = await axios.post(`${apiUrl}/v1/auth/register`, payload)
+            console.log(data)
+            if(data) {
+                dispatch({type: onRegister, payload: data})
+            }
+        } catch (error) {
+            dispatch({type: onRegisterError, error: error})
+        }
+    }
+}
 export const {
-    onChecking, onLogin, onLogout, onLoginError
+    onChecking, onLogin, onLogout, onLoginError, onCheckingRegister, onRegister, onRegisterError
 } = authSlice.actions
 export default authSlice.reducer
