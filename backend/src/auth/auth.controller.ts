@@ -12,12 +12,17 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from './entities/auth.entity';
 
 import { AuthService } from './auth.service';
-import { CreateUserDto, LoginUserDto, UpdateUserDto } from './dto';
+import {
+  CreateUserDto,
+  LoginUserDto,
+  RegisterFullDto,
+  UpdateUserDto,
+} from './dto';
 
 @ApiTags('Authentication')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) { }
+  constructor(private readonly authService: AuthService) {}
 
   @ApiResponse({ status: 201, description: 'User was create', type: User })
   @ApiResponse({
@@ -25,8 +30,8 @@ export class AuthController {
     description: 'Bad request (user already exists)',
   })
   @Post('register')
-  createUser(@Body() createUserDto: CreateUserDto) {
-    return this.authService.create(createUserDto);
+  createUser(@Body() registerFull: RegisterFullDto) {
+    return this.authService.registerFull(registerFull);
   }
 
   @Post('login')

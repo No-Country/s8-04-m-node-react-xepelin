@@ -1,24 +1,33 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsOptional } from 'class-validator';
+import { IsArray, IsOptional } from 'class-validator';
 import { IsString, MinLength } from 'class-validator';
 
 export class CreateCompanyDto {
   @ApiProperty({
-    description: 'Company CUIT (unique)',
+    description: 'RUT Company (unique)',
     nullable: false,
     minLength: 1,
   })
   @IsString()
-  cuit: string;
+  rutEmpresa: string;
 
   @ApiProperty({
-    description: 'Company name',
+    description: 'Company legal name',
     nullable: false,
     minLength: 1,
   })
   @IsString()
   @MinLength(1)
-  name: string;
+  razonSocial: string;
+
+  @ApiProperty({
+    description: 'Company full name',
+    nullable: false,
+    minLength: 1,
+  })
+  @IsString()
+  @MinLength(1)
+  nombreCompleto: string;
 
   @ApiProperty({
     description: 'Company contact',
@@ -37,4 +46,34 @@ export class CreateCompanyDto {
   @IsString()
   @IsOptional()
   address?: string;
+
+  @ApiProperty({
+    description: 'Company solutions',
+    nullable: true,
+    default: 'none',
+  })
+  //@IsString()
+  @IsArray()
+  @IsOptional()
+  soluciones?: string[];
+
+  @ApiProperty({
+    description: 'Company total sales per year',
+    nullable: true,
+    default: '0',
+  })
+  @IsString()
+  @IsOptional()
+  ventaAnual?: string;
+
+  @ApiProperty({
+    description: 'Company type',
+    nullable: true,
+    default: 'none',
+  })
+
+  @IsArray()
+  @IsOptional()
+  tipoOrganizacion?: string[];
+ 
 }

@@ -14,14 +14,24 @@ import { Model } from 'mongoose';
 import { User, ResetPassword } from './entities';
 
 // import { transporter } from '../config/transporter';
-import { CreateUserDto, LoginUserDto, UpdateUserDto } from './dto';
+import {
+  CreateUserDto,
+  LoginUserDto,
+  RegisterFullDto,
+  UpdateUserDto,
+} from './dto';
 import { JwtPayload } from './interfaces';
+import { CreateCompanyDto } from 'src/companies/dto/create-company.dto';
+import { Company } from 'src/companies/entities/company.entity';
 
 @Injectable()
 export class AuthService {
   constructor(
     @InjectModel(User.name)
     private readonly userModel: Model<User>,
+
+    @InjectModel(Company.name)
+    private readonly companyModel: Model<Company>,
 
     @InjectModel(ResetPassword.name)
     private readonly resetPasswordModel: Model<ResetPassword>,
@@ -48,6 +58,38 @@ export class AuthService {
       this.handleDBError(error);
     }
   }
+
+  async registerFull(createFullDto: RegisterFullDto) {
+    try {
+
+      const createAuthDto: CreateUserDto = createFullDto;
+      const createCompanyDto: CreateCompanyDto = createFullDto;
+
+      const { password, ...userData } = createAuthDto;
+      const user = await this.userModel.create({
+        ...userData,
+        password: bcrypt.hashSync(password, 10),
+      });
+  
+      const { ...companyData } = createCompanyDto;
+      const company = await this.companyModel.create({
+        ...companyData,
+      });
+
+      company.employees.push(user._id);
+      await company.save();
+  
+      await user.save();
+  
+      return {
+        company,
+        token: this.getJwtToken({ id: user._id }),
+      };
+    } catch (error) {
+      this.handleDBError(error);
+    }
+  }
+
   async login(loginAuthDto: LoginUserDto) {
     try {
       const { email, password } = loginAuthDto;
@@ -191,8 +233,12 @@ export class AuthService {
   // }
 
   private handleDBError(error: any): never {
-    if (error.code === 11000)
+    if (error.code === 11000){
+      console.log(error);
+      
       throw new BadRequestException(`${error.keyValue['email']} exists`);
+    }
+      
     throw new HttpException(error.response, error.status);
   }
 }

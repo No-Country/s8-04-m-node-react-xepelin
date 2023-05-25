@@ -6,11 +6,15 @@ import { Document, Types } from 'mongoose';
 export class Company extends Document {
   @ApiProperty()
   @Prop({ unique: true })
-  cuit: string;
+  rutEmpresa: string;
 
   @ApiProperty()
   @Prop()
-  name: string;
+  razonSocial: string;
+
+  @ApiProperty()
+  @Prop()
+  nombreCompleto: string;
 
   @ApiProperty()
   @Prop()
@@ -23,6 +27,18 @@ export class Company extends Document {
   @ApiProperty()
   @Prop({ default: true })
   isActive: boolean;
+
+  @ApiProperty()
+  @Prop({ array: true })
+  soluciones: string[];
+
+  @ApiProperty()
+  @Prop({ default: '0' })
+  ventaAnual: string;
+
+  @ApiProperty()
+  @Prop({ array: true })
+  tipoOrganizacion: string[];
 
   @ApiProperty()
   @Prop({ array: true, ref: 'User' })
