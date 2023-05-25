@@ -1,14 +1,46 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
+import { ErrorMessage, Field, Form, Formik} from "formik";
 import { useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
+import * as Yup from "yup";
+import axios from "axios"
+import { loginuser } from "../../Redux/auth/authSlice";
 
+
+
+const required = "* Campo obligatorio";
+const schema = Yup.object().shape({
+  email: Yup.string().email('Invalid email address').required(required),
+  password: Yup.string()
+    .min(8, "Debe contener al menos 8 caracteres de largo")
+    .required(required),
+});
 
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
+
+  const submitLogin = async (values) => {
+    const urlBase = "https://zepellin.onrender.com";
+    //const apiUrl = import.meta.env.VITE_API_URL;
+    const data = {
+      ...values
+    }
+
+    try {
+      const response = await axios.post(`${urlBase}/api/v1/auth/login`, data);
+      console.log(response.data);
+      loginuser(response.data)
+    } catch (error) {
+      console.error(error);
+    }
+  
+    
+  }
+  
+
   return (
     <div className="bg-Blanco">
     <div className="md:w-1/3 md:mx-auto">
-      <div className="flex justify-center pt-24 pb-4 ">
+      <div className="flex justify-center pt-24 pb-4">
         <button
           id="dropdownDividerButton"
           data-dropdown-toggle="dropdownDivider"
@@ -69,9 +101,11 @@ const LoginForm = () => {
           email: "",
           password: "",
         }}
-        onSubmit={(values, { setSubmitting }) => {
-          console.log(values);
+        validationSchema={schema}
+        onSubmit={(values, { setSubmitting, resetForm }) => {
+          submitLogin(values)
           setSubmitting(false);
+          resetForm();
         }}
       >
         {({ isSubmitting }) => (

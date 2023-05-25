@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
+
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
@@ -34,6 +35,7 @@ export const authSlice = createSlice({
         }
     }
 });
+
 export const loginuser = (payload) => {
     return async (dispatch) => {
         try {
@@ -45,6 +47,7 @@ export const loginuser = (payload) => {
         }
     }
 }
+
 export const {
     onChecking, onLogin, onLogout, onLoginError
 } = authSlice.actions
