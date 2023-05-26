@@ -2,13 +2,13 @@ import { ErrorMessage, Field, Form, Formik} from "formik";
 import { useEffect, useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import * as Yup from "yup";
-import { onChecking, onLogin, onLoginError, onLogout } from "../../Redux/auth/authSlice";
+import { loginuser, onLogout } from "../../Redux/auth/authSlice";
 import { useDispatch, useSelector} from "react-redux";
-import axios from "axios";
+// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"
 //import Loader from "react-loader-spinner"
-const APIURL = import.meta.env.VITE_API_URL
+// const APIURL = import.meta.env.VITE_API_URL
 
 
 const required = "* Campo obligatorio";
@@ -47,7 +47,7 @@ const LoginForm = () => {
 
   const loginUser = async (values)=>{
     const data = {...values};
-    try {
+/*     try {
       dispatch(onChecking());
       //const urlBase = "https://zepellin.onrender.com";
       const response = await axios.post(`${APIURL}/v1/auth/login`, data);
@@ -57,7 +57,8 @@ const LoginForm = () => {
     } catch (error) {
       console.error(error, "error")
       dispatch(onLoginError(error.response.data.message));
-    }
+    } */
+    dispatch(loginuser(data))
   }
  
   useEffect(()=>{
