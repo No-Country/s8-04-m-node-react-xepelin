@@ -25,11 +25,11 @@ export const authSlice = createSlice({
             state.errorMessage= undefined;
             //console.log(payload.user)
         },
-        onLoginError: (state, {payload}) => {
+        onLoginError: (state, {error}) => {
             state.status = "not-authenticated";
             state.user = {};
             state.token = null;
-            state.errorMessage = payload;
+            state.errorMessage = error;
             //console.log(payload)
         },
         onLogout: (state) => {
@@ -62,22 +62,19 @@ export const authSlice = createSlice({
 
 // esta funcion no la estoy usando
 export const loginuser = (payload) => {
-
+console.log(payload)
     return async (dispatch) => {
         try {
-            const data = {
-                ...payload
-            } 
-            dispatch({type: onChecking})
-            const urlBase = "https://zepellin.onrender.com";
-            const response = await axios.post(`${urlBase}/api/v1/auth/login`, data);
-            console.log(response.data);
-            console.log(response)
-            
-        } catch (error) {
+            dispatch({type: onChecking});
+            //const urlBase = "https://zepellin.onrender.com";
+            const response = await axios.post(`${apiUrl}/v1/auth/login`, payload);
+            if(response.data.token){
+              dispatch({type: onLogin, payload: response.data})
+            }
+          } catch (error) {
             console.error(error, "error")
-            dispatch({ type: onLoginError, error: error.response})
-        }
+            dispatch({type: onLoginError, error: error.response.data.message});
+          }
     }
 }
 
