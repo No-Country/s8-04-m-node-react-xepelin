@@ -106,7 +106,7 @@ const RegisterForm = () => {
                   </div>
                   <ErrorMessage name="soluciones" component="div" />
                   <div className="flex  items-center px-4 py-4 bg-Blanco  border border-gray-500 rounded dark:border-gray-700">
-                    <Field type="checkbox" name="otra" value="otra" />
+                    <Field type="checkbox" name="soluciones" value="otra" />
                     <label className="ml-2">Otra</label>
                   </div>
                   <ErrorMessage name="otra" component="div" />

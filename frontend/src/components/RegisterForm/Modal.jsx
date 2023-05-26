@@ -1,22 +1,33 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import { useDispatch, useSelector } from "react-redux";
-import { registeruser } from "../../Redux/auth/authSlice";
+import { deleteinforegister, registeruser } from "../../Redux/auth/authSlice";
 import { IconContext } from "react-icons";
 import { FaSpinner } from "react-icons/fa";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2"
 // eslint-disable-next-line react/prop-types
 const Modal = ({ isOpen, onClose, formValues }) => {
   console.log(formValues, "formikValues");
   const navigate = useNavigate();
   const loading = useSelector((state) => state.user.statusRegister);
+  const failureRegister = useSelector((state) => state.user.registerMessage);
   console.log(loading, "loading");
   const dispatch = useDispatch();
   useEffect(() => {
     if (loading === "registered") {
       navigate("/profile");
     }
+    if(failureRegister !== undefined) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: `${failureRegister}`,
+      })
+      dispatch(deleteinforegister())
+    }
   });
+
   if (!isOpen) return null;
 
   const handleSubmit = (values) => {
