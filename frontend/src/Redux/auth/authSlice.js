@@ -9,26 +9,28 @@ export const authSlice = createSlice({
         token: null,
         errorMessage: undefined,
         statusRegister: "not-registered", // 'registered' , 'checking'
-        registerMessage: undefined
+        registerMessage: undefined,
     },
     reducers: {
         onChecking: (state) => {
             state.status = "checking";
-            state.user = {}
-            state.token = null
-            state.errorMessage= undefined
+            state.user = {};
+            state.token = null;
+            state.errorMessage= undefined;
         },
         onLogin: (state, {payload}) => {
             state.status = "authenticated";
-            state.user = payload.user
-            state.token = payload.token
-            state.errorMessage= undefined
+            state.user = payload.user;
+            state.token = payload.token;
+            state.errorMessage= undefined;
+            //console.log(payload.user)
         },
         onLoginError: (state, {payload}) => {
             state.status = "not-authenticated";
-            state.user = {}
-            state.token = null
-            state.errorMessage= payload
+            state.user = {};
+            state.token = null;
+            state.errorMessage = payload;
+            //console.log(payload)
         },
         onLogout: (state) => {
             state.status = "not-authenticated";
@@ -52,17 +54,29 @@ export const authSlice = createSlice({
         }
     }
 });
+
+
+// esta funcion no la estoy usando
 export const loginuser = (payload) => {
+
     return async (dispatch) => {
         try {
+            const data = {
+                ...payload
+            } 
             dispatch({type: onChecking})
-            console.log(payload)
+            const urlBase = "https://zepellin.onrender.com";
+            const response = await axios.post(`${urlBase}/api/v1/auth/login`, data);
+            console.log(response.data);
+            console.log(response)
+            
         } catch (error) {
             console.error(error, "error")
             dispatch({ type: onLoginError, error: error.response})
         }
     }
 }
+
 export const registeruser = (payload) => {
     return async(dispatch)=> {
         try {
