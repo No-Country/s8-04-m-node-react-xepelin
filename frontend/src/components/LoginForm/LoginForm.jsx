@@ -7,7 +7,8 @@ import { useDispatch, useSelector} from "react-redux";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"
-//import Loader from "react-loader-spinner";
+//import Loader from "react-loader-spinner"
+const APIURL = import.meta.env.VITE_API_URL
 
 
 const required = "* Campo obligatorio";
@@ -48,8 +49,8 @@ const LoginForm = () => {
     const data = {...values};
     try {
       dispatch(onChecking());
-      const urlBase = "https://zepellin.onrender.com";
-      const response = await axios.post(`${urlBase}/api/v1/auth/login`, data);
+      //const urlBase = "https://zepellin.onrender.com";
+      const response = await axios.post(`${APIURL}/v1/auth/login`, data);
       if(response.data.token){
         dispatch(onLogin(response.data))
       }
