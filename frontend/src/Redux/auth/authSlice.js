@@ -51,6 +51,10 @@ export const authSlice = createSlice({
             console.log(error, "error")
             state.statusRegister = "not-registered"
             state.registerMessage = error
+        },
+        onDeleteRegister: (state) => {
+            state.statusRegister = "not-registered"
+            state.registerMessage = undefined
         }
     }
 });
@@ -87,11 +91,16 @@ export const registeruser = (payload) => {
                 dispatch({type: onRegister, payload: data})
             }
         } catch (error) {
-            dispatch({type: onRegisterError, error: error})
+            dispatch({type: onRegisterError, error: error.response.data.message})
         }
     }
 }
+export const deleteinforegister = () => {
+    return async(dispatch)=> {
+        dispatch({type: onDeleteRegister})
+    }
+}
 export const {
-    onChecking, onLogin, onLogout, onLoginError, onCheckingRegister, onRegister, onRegisterError
+    onChecking, onLogin, onLogout, onLoginError, onCheckingRegister, onRegister, onRegisterError, onDeleteRegister
 } = authSlice.actions
 export default authSlice.reducer
