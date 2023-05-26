@@ -28,7 +28,7 @@ const LoginForm = () => {
   //const user = useSelector((state)=>state.user)
   const currentStatus = useSelector((state)=> state.user.status);
   const failedLogin = useSelector((state)=> state.user.errorMessage)
-  console.log(currentStatus, failedLogin)
+  console.log(currentStatus, failedLogin, APIURL)
 
 
   function LoaderComponent() {
@@ -49,7 +49,6 @@ const LoginForm = () => {
     const data = {...values};
     try {
       dispatch(onChecking());
-      //const urlBase = "https://zepellin.onrender.com";
       const response = await axios.post(`${APIURL}/v1/auth/login`, data);
       if(response.data.token){
         dispatch(onLogin(response.data))
