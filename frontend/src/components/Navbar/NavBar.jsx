@@ -8,7 +8,7 @@ import { useNavigate } from 'react-router-dom';
 
 const NavBar = () => {
   const currentStatus = useSelector((state)=> state.user.status);
-  const currerntUser = useSelector((state)=> state.user.currentUser)
+  const currerntUser = useSelector((state)=> state.user.user)
   console.log(currentStatus, currerntUser)
   const dispatch = useDispatch();
   const navigate = useNavigate()
@@ -49,7 +49,7 @@ const NavBar = () => {
                     <div id="dropdownNavbar" className="z-10 hidden font-normal bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
                         <ul className="py-2 text-sm text-gray-700 dark:text-gray-400" aria-labelledby="dropdownLargeButton">
                           <div className="px-4 py-3">
-                            <span className="block text-sm text-gray-900 dark:text-white">{currerntUser.name}</span>
+                            <span className="block text-sm text-gray-900 dark:text-white">{currerntUser.firstName}</span>
                             <span className="block text-sm  text-gray-500 truncate dark:text-gray-400">{currerntUser.email}</span>
                           </div>
                         <li>
