@@ -16,7 +16,11 @@ const schema = Yup.object().shape({
   email: Yup.string().email('Invalid email address').required(required),
   password: Yup.string()
     .min(8, "Debe contener al menos 8 caracteres de largo")
-    .required(required),
+    .required(required)
+    .matches(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+      "La contraseña debe tener al menos una letra mayúscula, una letra minúscula, numeros y un carácter especial"
+    )
 });
 
 
@@ -28,7 +32,7 @@ const LoginForm = () => {
   //const user = useSelector((state)=>state.user)
   const currentStatus = useSelector((state)=> state.user.status);
   const failedLogin = useSelector((state)=> state.user.errorMessage)
-  console.log(currentStatus, failedLogin, APIURL)
+  console.log(currentStatus, failedLogin)
 
 
   function LoaderComponent() {
@@ -47,7 +51,7 @@ const LoginForm = () => {
 
   const loginUser = async (values)=>{
     const data = {...values};
-/*     try {
+    /*     try {
       dispatch(onChecking());
       const response = await axios.post(`${APIURL}/v1/auth/login`, data);
       if(response.data.token){
@@ -63,8 +67,7 @@ const LoginForm = () => {
   useEffect(()=>{
 
     if(currentStatus === "authenticated"){
-      navigate("/dashboard")
-      window.location.reload()
+      navigate("/");
     }
 
     if(failedLogin !== undefined){
