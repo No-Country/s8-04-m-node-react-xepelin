@@ -4,7 +4,7 @@ const apiUrl = import.meta.env.VITE_API_URL;
 export const authSlice = createSlice({
     name: 'auth',
     initialState: {
-        status: "not-authenticated", // 'authenticated, cheking'
+        status: "not-authenticated", // 'authenticated, checking'
         user: {},
         token: null,
         errorMessage: undefined,
