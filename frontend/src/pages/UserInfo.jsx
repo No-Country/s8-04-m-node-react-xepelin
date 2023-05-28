@@ -1,8 +1,13 @@
 import Button from "../components/button/Button";
 import Card from "../components/card/Card";
 
+import { useSelector } from 'react-redux'
+
 
 const UserInfo = () => {
+  const currentStatus = useSelector((state)=> state.user.status);
+  const currentUser = useSelector((state)=> state.user.user)
+  console.log(currentStatus, currentUser)
   return (
     <div className="bg-Neutral-50 p-10">
       <div className="py-5">
@@ -19,11 +24,11 @@ const UserInfo = () => {
           <div className="flex flex-col md:flex-row md:justify-between ">
             <div>
               <h3 className="text-sm text-gray-400">Nombre y apellido</h3>
-              <h2>Juan Ferna</h2>
+              <h2>{currentUser.lastName} {currentUser.firstName}</h2>
             </div>
             <div>
               <h3 className="text-sm text-gray-400">Número de contacto</h3>
-              <h2>323232323</h2>
+              <h2>{currentUser.contact}</h2>
             </div>
           </div>
         </Card>
