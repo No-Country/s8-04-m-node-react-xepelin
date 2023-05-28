@@ -6,6 +6,8 @@ import NavBar from './components/Navbar/NavBar';
 import Footer from './components/Footer/Footer';
 import Login from './pages/Login';
 import Mision from './pages/Mision';
+import MenuInicio from './pages/MenuInicio';
+import PrivateRoute from './components/PrivateRoute';
 
 
 function App() {
@@ -21,6 +23,7 @@ function App() {
         <Route path="/login" element={<Login/>} />
         <Route path='/mision' element={<Mision/>}/>
         <Route path='/dashboard' element={<Mision/>}/>
+        <Route path='/menu/*' element={ <PrivateRoute element={<MenuInicio/>}/>}/>
       </Routes>
       <Footer/>
     </Router>
