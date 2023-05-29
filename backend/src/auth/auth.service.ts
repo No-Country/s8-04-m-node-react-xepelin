@@ -78,7 +78,8 @@ export class AuthService {
 
       company.employees.push(user._id);
       await company.save();
-  
+
+      user.companies.push(company._id);
       await user.save();
   
       return {
@@ -95,7 +96,7 @@ export class AuthService {
       const { email, password } = loginAuthDto;
       const findUser = await this.userModel
         .findOne({ email })
-        .select('-password');
+        .select('-password'); //.populate('companies')¿?;
       const findbyPass = await this.userModel.findOne({ email });
 
       if (!findUser) {
@@ -111,7 +112,12 @@ export class AuthService {
         throw new HttpException('PASSWORD_INCORRECT', HttpStatus.FORBIDDEN);
       }
 
-      const payload = { id: findUser._id, firstname: findUser.firstName };
+      const payload = {
+        id: findUser._id,
+        firstname: findUser.firstName,
+        roles: findUser.roles,
+        company: findUser.companies,
+      };
       const token = this.jwtService.sign(payload);
 
       const data = {
