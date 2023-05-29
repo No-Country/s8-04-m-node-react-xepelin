@@ -32,10 +32,10 @@ const NavBar = () => {
           currentStatus !== "authenticated"  && (
             <div className="flex md:order-2" id='buttons-login-register'>
               <Link to={"/register"}>
-                <button type="button" className="text-black mx-2  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sing Up</button>
+                <button type="button" className="text-black mx-2  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign Up</button>
               </Link>
               <Link to={"/login"}>
-                <button type="button" className="text-white bg-Primary-100  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sing In</button>
+                <button type="button" className="text-white bg-Primary-100  focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign In</button>
               </Link>
               
             </div>
@@ -60,18 +60,18 @@ const NavBar = () => {
                   </Dropdown.Header>
                   <Dropdown.Item>
                     <Link to={"/dashboard"} className="block  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                      Dashboard
+                      Panel De Control
                     </Link>
                   </Dropdown.Item>
                   <Dropdown.Item>
                   <Link to={"/profile"} className="block  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Profile
+                    Perfil
                   </Link>
                   </Dropdown.Item>
                   <Dropdown.Divider />
                   <Dropdown.Item>
                     <button onClick={()=>logOut()} className="block text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white" id='logout'>
-                      Sign out
+                      Salir
                     </button>
                   </Dropdown.Item>
                 </Dropdown>
