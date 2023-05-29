@@ -207,18 +207,7 @@ const RegisterForm = () => {
                   Crear Cuenta
                 </div>
                 <div className="flex flex-col mt-3">
-                  <label htmlFor="lastName">Nombre</label>
-                  <Field
-                    type="text"
-                    name="lastName"
-                    required
-                    className="mt-2 py-4 px-4 rounded-lg border border-zinc-400"
-                    placeholder="Ingresa Nombre"
-                  />
-                  <ErrorMessage name="lastName" component="div" />
-                </div>
-                <div className="flex flex-col mt-3">
-                  <label htmlFor="firstName">Apellido</label>
+                  <label htmlFor="firstName">Nombre</label>
                   <Field
                     type="text"
                     name="firstName"
@@ -227,6 +216,17 @@ const RegisterForm = () => {
                     placeholder="Ingresa Nombre"
                   />
                   <ErrorMessage name="firstName" component="div" />
+                </div>
+                <div className="flex flex-col mt-3">
+                  <label htmlFor="lastName">Apellido</label>
+                  <Field
+                    type="text"
+                    name="lastName"
+                    required
+                    className="mt-2 py-4 px-4 rounded-lg border border-zinc-400"
+                    placeholder="Ingresa Apellido"
+                  />
+                  <ErrorMessage name="lastName" component="div" />
                 </div>
                 <div className="flex flex-col mt-3">
                   <label htmlFor="email">Correo Electronico</label>
