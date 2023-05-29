@@ -8,6 +8,7 @@ import Login from './pages/Login';
 import Mision from './pages/Mision';
 import MenuInicio from './pages/MenuInicio';
 import PrivateRoute from './components/PrivateRoute';
+import Payment from './pages/Payment';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
         <Route path='/mision' element={<Mision/>}/>
         <Route path='/dashboard' element={<Mision/>}/>
         <Route path='/menu/*' element={ <PrivateRoute element={<MenuInicio/>}/>}/>
+        <Route path='/payment' element={<Payment/>}/>
       </Routes>
       <Footer/>
     </Router>
