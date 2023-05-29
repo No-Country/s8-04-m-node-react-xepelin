@@ -80,6 +80,13 @@ const LoginForm = () => {
     }
 
   });
+  useEffect(() => {
+    return () => {
+      if (currentStatus === "checking") {
+        dispatch(onLogout());
+      }
+    };
+  }, []);
 
   return (
     <div className="bg-Blanco">
@@ -170,7 +177,7 @@ const LoginForm = () => {
                   />
                 </div>
                 <div className="flex flex-col mt-4 mb-4">
-                  <label htmlFor="passwod">Crear Contraseña</label>
+                  <label htmlFor="passwod">Contraseña</label>
                   <div className="relative">
                     <Field
                       type={showPassword ? "text" : "password"}
