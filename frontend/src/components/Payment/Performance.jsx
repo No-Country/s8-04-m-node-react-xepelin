@@ -5,7 +5,7 @@ const Performance = () => {
     <div className="bg-white w-full rounded-xl p-4">
       <div className="flex flex-col">
         <div className="flex flex-row items-center">
-          <h1 className="w-1/2 font-medium text-2xl pl-6">Performance</h1>
+          <h1 className="w-1/2 font-bold text-3xl pl-6">Performance</h1>
           <div className="flex flex-row justify-end w-1/2 gap-4 items-center">
             <div className="flex flex-row items-center gap-2">
               <hr className="w-10 h-0.5 bg-Violeta-xe" />
