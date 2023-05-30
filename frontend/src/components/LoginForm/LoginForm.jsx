@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import * as Yup from "yup";
 import { loginuser, onLogout } from "../../Redux/auth/authSlice";
+import { getCompanyInfo } from "../../Redux/auth/companySlice";
 import { useDispatch, useSelector} from "react-redux";
 // import axios from "axios";
 import { useNavigate } from "react-router-dom";
@@ -29,10 +30,10 @@ const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  //const user = useSelector((state)=>state.user)
+  const currentUser = useSelector((state)=>state.user.user)
   const currentStatus = useSelector((state)=> state.user.status);
   const failedLogin = useSelector((state)=> state.user.errorMessage)
-  console.log(currentStatus, failedLogin)
+  console.log( currentUser)
 
 
   function LoaderComponent() {
@@ -62,6 +63,7 @@ const LoginForm = () => {
       dispatch(onLoginError(error.response.data.message));
     } */
     dispatch(loginuser(data))
+    dispatch(getCompanyInfo(currentUser.companies))
   }
  
   useEffect(()=>{
