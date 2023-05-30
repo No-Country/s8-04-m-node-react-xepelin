@@ -1,5 +1,12 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsArray, IsDate, IsOptional } from 'class-validator';
+import { Transform } from 'class-transformer';
+import {
+  IsArray,
+  IsDate,
+  IsInt,
+  IsNotEmpty,
+  IsOptional,
+} from 'class-validator';
 import { IsString, MinLength } from 'class-validator';
 
 export class CreatePaymentDto {
@@ -8,16 +15,18 @@ export class CreatePaymentDto {
     nullable: false,
     minLength: 1,
   })
-  @IsString()
-  amount: string;
+  @Transform(({ value }) => parseInt(value))
+  @IsInt()
+  amount: number;
 
   @ApiProperty({
     description: 'Interest rate',
     nullable: false,
     minLength: 1,
   })
-  @IsString()
-  interestRate: string;
+  @Transform(({ value }) => parseInt(value))
+  @IsInt()
+  interestRate: number;
 
   @ApiProperty({
     description: 'Payment Deadline',
@@ -25,7 +34,9 @@ export class CreatePaymentDto {
     minLength: 1,
   })
   @IsDate()
-  paymentDeadline: string;
+  @IsNotEmpty()
+  @Transform(({ value }) => new Date(value))
+  paymentDeadline: Date;
 
   @ApiProperty({
     description: 'Employee id',
@@ -33,6 +44,7 @@ export class CreatePaymentDto {
     minLength: 1,
   })
   @IsString()
+  @IsNotEmpty()
   employeeApplied: string;
 
   @ApiProperty({
