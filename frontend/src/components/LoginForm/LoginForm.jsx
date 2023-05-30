@@ -81,6 +81,15 @@ const LoginForm = () => {
 
   });
 
+  useEffect(()=>{
+    return()=>{
+      if(currentStatus === "checking"){
+        dispatch(onLogout());
+      }
+      
+    }
+  },[])
+
   return (
     <div className="bg-Blanco">
       {
