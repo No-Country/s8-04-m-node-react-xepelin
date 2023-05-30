@@ -2,14 +2,15 @@ import { Prop, SchemaFactory, Schema } from '@nestjs/mongoose';
 import { ApiProperty } from '@nestjs/swagger';
 import { Document, Types } from 'mongoose';
 
+@Schema()
 export class Payment extends Document {
   @ApiProperty()
-  @Prop({ default: '0' })
-  amount: string;
+  @Prop({ default: 150000 })
+  amount: number;
 
   @ApiProperty()
-  @Prop()
-  interestRate: string;
+  @Prop({ default: 10 })
+  interestRate: number;
 
   @ApiProperty()
   @Prop({ default: new Date() })
