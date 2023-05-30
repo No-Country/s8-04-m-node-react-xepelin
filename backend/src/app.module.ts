@@ -8,6 +8,7 @@ import { JoiValidationSchema } from './config/joi.schema';
 import { AuthModule } from './auth/auth.module';
 import { CompaniesModule } from './companies/companies.module';
 import { PaymentsModule } from './payments/payments.module';
+import { DebtModule } from './debt/debt.module';
 
 @Module({
   imports: [
@@ -25,6 +26,7 @@ import { PaymentsModule } from './payments/payments.module';
     AuthModule,
     CompaniesModule,
     PaymentsModule,
+    DebtModule,
   ],
 })
 export class AppModule {}
