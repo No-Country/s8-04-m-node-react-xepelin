@@ -25,6 +25,10 @@ import experiencianaloga from "./Mision/phone-checklist.png"
 import acceslimit from "./Mision/undraw_access_denied_re_awnf.svg"
 import todolist from "./Mision/undraw_team_goals_re_4a3t.svg"
 import grupo from "./navbar/grupo.png";
+import information from "./Menu/Data Arranging_Outline.svg"
+import informationmoney from "./Menu/User interface_Monochromatic.svg"
+import payment from "./Menu/Online payment_Flatline.svg"
+import analized from "./Menu/Data analyzing _Isometric.svg"
 export {
 
     zepelin,
@@ -50,5 +54,9 @@ export {
     acceslimit,
     todolist,
     grupo,
+    information,
+    informationmoney,
+    analized,
+    payment
 
 }

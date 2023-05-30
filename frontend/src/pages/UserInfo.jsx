@@ -1,8 +1,14 @@
 import Button from "../components/button/Button";
 import Card from "../components/card/Card";
 
+import { useSelector } from 'react-redux'
+
 
 const UserInfo = () => {
+  const currentStatus = useSelector((state)=> state.user.status);
+  const currentUser = useSelector((state)=> state.user.user)
+  const currentCompany = useSelector((state) => state.company.company)
+  console.log(currentStatus, currentUser, currentCompany)
   return (
     <div className="bg-Neutral-50 p-10">
       <div className="py-5">
@@ -19,11 +25,11 @@ const UserInfo = () => {
           <div className="flex flex-col md:flex-row md:justify-between ">
             <div>
               <h3 className="text-sm text-gray-400">Nombre y apellido</h3>
-              <h2>Juan Ferna</h2>
+              <h2>{currentUser.lastName} {currentUser.firstName}</h2>
             </div>
             <div>
               <h3 className="text-sm text-gray-400">Número de contacto</h3>
-              <h2>323232323</h2>
+              <h2>{currentUser.contact}</h2>
             </div>
           </div>
         </Card>
@@ -35,21 +41,21 @@ const UserInfo = () => {
             <div>
               <div>
                 <h3 className="text-sm text-gray-400">Razón Social</h3>
-                <h2>Pasteles</h2>
+                <h2>{currentCompany.razonSocial}</h2>
               </div>
               <div>
                 <h3 className="text-sm text-gray-400">Domicilio</h3>
-                <h2>Calle San Juan S/N Villa Remedios</h2>
+                <h2>{currentCompany.address}</h2>
               </div>
             </div>
             <div>
               <div>
                 <h3 className="text-sm text-gray-400">Rut empresa</h3>
-                <h2>2055110-0</h2>
+                <h2>{currentCompany.rutEmpresa}</h2>
               </div>
               <div>
                 <h3 className="text-sm text-gray-400">Email</h3>
-                <h2>jmf798@yahoo.com.ar</h2>
+                <h2>{currentUser.email}</h2>
               </div>
             </div>
           </div>

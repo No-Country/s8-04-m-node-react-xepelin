@@ -5,7 +5,7 @@ import { IconContext } from "react-icons";
 import { FaSpinner } from "react-icons/fa";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import Swal from "sweetalert2"
+import Swal from "sweetalert2";
 // eslint-disable-next-line react/prop-types
 const Modal = ({ isOpen, onClose, formValues }) => {
   console.log(formValues, "formikValues");
@@ -18,15 +18,22 @@ const Modal = ({ isOpen, onClose, formValues }) => {
     if (loading === "registered") {
       navigate("/profile");
     }
-    if(failureRegister !== undefined) {
+    if (failureRegister !== undefined) {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
+        icon: "error",
+        title: "Oops...",
         text: `${failureRegister}`,
-      })
-      dispatch(deleteinforegister())
+      });
+      dispatch(deleteinforegister());
     }
   });
+  useEffect(() => {
+    return () => {
+      if (loading === "checking") {
+        dispatch(deleteinforegister());
+      }
+    };
+  }, []);
 
   if (!isOpen) return null;
 
@@ -142,7 +149,7 @@ const Modal = ({ isOpen, onClose, formValues }) => {
                     <button
                       type="button"
                       className="mt-5 py-4  w-full bg-Primary-100 rounded-lg text-xl text-white font-semibold"
-                      disabled={isSubmitting}
+                      disabled={isSubmitting || loading === "checking"}
                       onClick={() => handleSubmit(values)}
                     >
                       {loading === "checking" ? (
