@@ -5,10 +5,14 @@ import videoPrincipal from "../../assets/video/dashboard-xepelin.mp4";
 import { cmp, dolar, flesan, formPay, fpAndfd, izquierdo, lineadecredito, mega, oclock, sacyr, wom, portatil, calendario, manoseguridad, zepelin } from '../../assets/images';
 import Button from "../button/Button.jsx";
 import Card from "../card/Card.jsx";
-
+import { useSelector } from 'react-redux';
+import {Link} from "react-router-dom"
 
 
 const HomeContent = () => {
+
+    const currentStatus = useSelector((state)=>state.user.status)
+    //console.log(currentStatus)
 
     const backgroundTexto = {
         background: 'linear-gradient(56.45deg, #ff7d00 1.78%, #fc771c 16.06%, #f56565 51.07%, #ea4ad8 98.59%, #e640ff 104.65%)',
@@ -32,7 +36,18 @@ const HomeContent = () => {
                 </p>
                 <div className='grid gap-3 grid-cols-1 md:grid-cols-2 pt-6'>
                     <div className='col-span-1'>
-                        <button type="button" className=" w-full  text-white border border-purple-700 bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Comenzar Ahora</button>
+                        
+                        {
+                            currentStatus === "authenticated" ? (
+                                <Link to ={"/payment"}>
+                                    <button type="button" className=" w-full  text-white border border-purple-700 bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Comenzar Ahora</button>
+                                </Link>
+                            ) : (
+                                <Link to ={"/login"}>
+                                    <button type="button" className=" w-full  text-white border border-purple-700 bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Comenzar Ahora</button>
+                                </Link>
+                            )
+                        }
                     </div>
                     <div className='col-span-1'>
                         <button type="button" className="w-full text-purple-700  border border-purple-700 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-10 py-2.5 text-center mr-2 mb-2 dark:border-purple-400 dark:text-purple-400 dark:hover:text-white dark:hover:bg-purple-500 dark:focus:ring-purple-900">Contactanos</button>
@@ -79,13 +94,28 @@ const HomeContent = () => {
                     Explora nuestro producto:
                     </h2>
                     <p className='my-2 mx-2 font-bold'>Payments</p>
-
-                    <Button>
-                        <div className='flex items-center justify-center'>
-                        <span className='mx-2'>Conoce mas.</span>
-                        <AiOutlineArrowRight/>
-                        </div>
-                    </Button>   
+                    
+                    {
+                            currentStatus === "authenticated" ? (
+                                <Link to ={"/payment"}>
+                                    <Button>
+                                        <div className='flex items-center justify-center'>
+                                        <span className='mx-2'>Conoce mas.</span>
+                                        <AiOutlineArrowRight/>
+                                        </div>
+                                    </Button>
+                                </Link>
+                            ) : (
+                                <Link to ={"/login"}>
+                                    <Button>
+                                        <div className='flex items-center justify-center'>
+                                        <span className='mx-2'>Conoce mas.</span>
+                                        <AiOutlineArrowRight/>
+                                        </div>
+                                    </Button>
+                                </Link>
+                            )
+                        }
                 </div>
             </div>
 
@@ -105,7 +135,6 @@ const HomeContent = () => {
                         <Card>
                             <div>
                                 <img src={oclock} alt='oclock'/>
-
                                 <h2 className='font-bold'>
                                     Accede a financiamiento
                                 </h2>
