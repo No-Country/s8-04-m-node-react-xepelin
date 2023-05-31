@@ -65,7 +65,7 @@ const LoginForm = () => {
     dispatch(loginuser(data))
     dispatch(getCompanyInfo(currentUser.companies))
   }
- 
+  
   useEffect(()=>{
 
     if(currentStatus === "authenticated"){
