@@ -65,7 +65,7 @@ const LoginForm = () => {
     dispatch(loginuser(data))
     dispatch(getCompanyInfo(currentUser.companies))
   }
- 
+  
   useEffect(()=>{
 
     if(currentStatus === "authenticated"){
@@ -89,15 +89,6 @@ const LoginForm = () => {
       }
     };
   }, []);
-
-  useEffect(()=>{
-    return()=>{
-      if(currentStatus === "checking"){
-        dispatch(onLogout());
-      }
-      
-    }
-  },[])
 
   return (
     <div className="bg-Blanco">
