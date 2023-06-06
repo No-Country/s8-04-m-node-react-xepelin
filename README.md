@@ -21,7 +21,7 @@ Designación no-country: S8-04-m-node-react
 | Orlando Flores | Frontend  | https://www.linkedin.com/in/orlando-flores-54ab33168/| https://github.com/lalomax |
 | Juan Manuel Fernández | Backend  | |       |
 | Miguel Bazzarrelli | Backend  |  |  |
-| Josué Ordoñez  | Backend |  |  |
+| Josué Ordoñez  | Backend | https://www.linkedin.com/in/josueordonezm/ | https://github.com/r4zu |
 
 ## Tecnologias y Herramientas
 
