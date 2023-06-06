@@ -14,7 +14,7 @@ Designación no-country: S8-04-m-node-react
 | Integrante               | Rol      | LinkedIn                                             | GitHub                    |
 | ----------------------- | -------- | ---------------------------------------------------- | ----------------------------------- |
 | Elizabeth Leon | Team Leader  |  |  |
-| Gabriel Mayantz Remes | PM  |         | https://www.linkedin.com/in/gabriel-mayantz-remes/  |
+| Gabriel Mayantz Remes | PM  |  https://www.linkedin.com/in/gabriel-mayantz-remes/     |   |
 | Isaac Urdaneta | Frontend  |  |  |
 | Freddy Alberto Varón | Frontend  | | |
 | Tomás Villagra | Frontend  |  |  |
