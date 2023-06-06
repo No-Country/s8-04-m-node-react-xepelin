@@ -27,7 +27,6 @@ Designación no-country: S8-04-m-node-react
 
 ### **FrontEnd**
 
--   **TypesCript** &nbsp; <a href="https://www.typescriptlang.org/" rel="nofollow"> <img src="https://user-images.githubusercontent.com/102632512/206361616-18e1f5eb-d720-4cac-9e9a-2e16747d726e.png" alt="typescript"  width="20" height="20" style="max-width: 100%;"> </a>
 *   **ReactJs** &nbsp; <a href="https://reactjs.org/" rel="nofollow"> <img src="https://cdn.icon-icons.com/icons2/2415/PNG/96/react_original_wordmark_logo_icon_146375.png" alt="reactjs" width="30" height="30" style="max-width: 100%;"> </a>
 *   **Sass** &nbsp; <a href="https://sass-lang.com/" rel="nofollow"> <img src="https://user-images.githubusercontent.com/102632512/206369389-ddb1d099-929d-415d-9104-d7df2a7c4590.png" alt="reactjs" width="30" height="30" style="max-width: 100%;"> </a>
 *   **Redux** &nbsp; <a href="https://es.redux.js.org/" rel="nofollow"> <img src="https://user-images.githubusercontent.com/102632512/206369396-08fe949c-f01b-4047-b68a-d46c9926fd94.jpg" width="30" height="30" style="max-width: 100%;"> </a>
