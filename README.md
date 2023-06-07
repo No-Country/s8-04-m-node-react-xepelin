@@ -33,11 +33,6 @@ Designación no-country: S8-04-m-node-react
 *   **Tailwindcss** &nbsp; <a href="https://tailwindcss.com/" rel="nofollow"> <img src="https://user-images.githubusercontent.com/102632512/206369384-429ad29c-fce5-4070-94ea-ee70ef40f372.png" alt="reactjs" width="30" height="30" style="max-width: 100%;"> </a>
 
 ### **BackEnd**
--   **TypesCript** &nbsp; <a href="https://www.typescriptlang.org/" rel="nofollow"> <img src="https://user-images.githubusercontent.com/102632512/206361616-18e1f5eb-d720-4cac-9e9a-2e16747d726e.png" alt="typescript"  width="20" height="20" style="max-width: 100%;"> </a>
--   **Node.js**&nbsp; <a href="https://nodejs.org" rel="nofollow"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original-wordmark.svg" alt="nodejs" width="40" height="40" style="max-width: 100%;"> </a>
--   **Express.js**&nbsp; <a href="https://expressjs.com" rel="nofollow"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40" style="max-width: 100%;"> </a>
--   **PostgreSQL**&nbsp; <a href="https://www.postgresql.org/" rel="nofollow"> <img src="http://www.geomapik.com/wp-content/uploads/2019/09/postgresql-logo-921x1024.png" alt="express" width="40" height="40" style="max-width: 100%;"> </a>
--   **Sequelize**&nbsp; <a href="https://sequelize.org/" rel="nofollow"> <img src="https://user-images.githubusercontent.com/102632512/206369387-20bc6337-6604-4a3b-afaa-4d6d2718a7bf.png" alt="express" width="25" height="25" style="max-width: 100%;"> </a>
 
 -   **Docker** &nbsp; <a href="https://www.docker.com/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/docker/docker-original-wordmark.svg" alt="docker" width="40" height="40"/> </a> 
 -   **ExpressJS** &nbsp; <a href="https://expressjs.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/express/express-original-wordmark.svg" alt="express" width="40" height="40"/> </a> 
