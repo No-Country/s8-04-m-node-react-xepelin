@@ -14,6 +14,7 @@ export class DebtService {
     debt.amount = createDebtDto.amount;
     debt.installmentCount = createDebtDto.installmentCount;
     debt.interestRate = createDebtDto.interestRate;
+    debt.dueDate = new Date(createDebtDto.dueDate);
     debt.paidAmount = 0;
     debt.isActive = true;
   

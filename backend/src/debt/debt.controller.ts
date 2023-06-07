@@ -1,7 +1,9 @@
 import { Controller, Post, Param, Body, NotFoundException } from '@nestjs/common';
 import { DebtService } from './debt.service';
 import { CreateDebtDto } from './dto/create-debt.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Debts')
 @Controller('debts')
 export class DebtController {
   constructor(private readonly debtService: DebtService) {}
