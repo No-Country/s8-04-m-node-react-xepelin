@@ -17,7 +17,7 @@ Designación no-country: S8-04-m-node-react
 | Gabriel Mayantz Remes | PM  |  https://www.linkedin.com/in/gabriel-mayantz-remes/     |   |
 | Isaac Urdaneta | Frontend  |  |  |
 | Freddy Alberto Varón | Frontend  | | |
-| Tomás Villagra | Frontend  |  |  |
+| Tomás Villagra | Frontend  | https://www.linkedin.com/in/tomas-villagra-381a8a24b/ | https://github.com/TomasFE1 |
 | Orlando Flores | Frontend  | https://www.linkedin.com/in/orlando-flores-54ab33168/| https://github.com/lalomax |
 | Juan Manuel Fernández | Backend  | https://www.linkedin.com/in/juan-manuel-fernandez-dev/ | https://github.com/juanmfernandez |
 | Miguel Bazzarrelli | Backend  |  |  |
