@@ -1,17 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { Transform } from 'class-transformer';
 import {
-  IsArray,
   IsDate,
   IsInt,
   IsNotEmpty,
-  IsOptional,
+  IsString,
+  MinLength,
 } from 'class-validator';
-import { IsString, MinLength } from 'class-validator';
 
-export class CreatePaymentDto {
+export class CreateInvoiceDto {
   @ApiProperty({
-    description: 'Loan amount',
+    description: 'Supplier data',
+    nullable: false,
+    minLength: 1,
+  })
+  @IsString()
+  supplier: string;
+
+  @ApiProperty({
+    description: 'Invoice amount',
     nullable: false,
     minLength: 1,
   })
@@ -20,32 +27,32 @@ export class CreatePaymentDto {
   amount: number;
 
   @ApiProperty({
-    description: 'Interest rate',
-    nullable: false,
-    minLength: 1,
-  })
-  @Transform(({ value }) => parseInt(value))
-  @IsInt()
-  interestRate: number;
-
-  @ApiProperty({
-    description: 'Payment Deadline',
+    description: 'Invoice issue',
     nullable: false,
     minLength: 1,
   })
   @IsDate()
   @IsNotEmpty()
   @Transform(({ value }) => new Date(value))
-  paymentDeadline: Date;
+  issueDate: Date;
 
   @ApiProperty({
-    description: 'Employee id',
+    description: 'Invoice due',
     nullable: false,
     minLength: 1,
   })
-  @IsString()
+  @IsDate()
   @IsNotEmpty()
-  employeeApplied: string;
+  @Transform(({ value }) => new Date(value))
+  dueDate: Date;
+
+  @ApiProperty({
+    description: 'Invoice detail',
+    nullable: false,
+    minLength: 5,
+  })
+  @IsString()
+  detail: string;
 
   @ApiProperty({
     description: 'Company id',
@@ -56,11 +63,12 @@ export class CreatePaymentDto {
   company: string;
 
   @ApiProperty({
-    description: 'Invoice ids',
+    description: 'Invoice status',
     nullable: false,
-    minLength: 1,
+    minLength: 4,
+    default: 'pending',
   })
-  @IsArray()
-  @IsOptional()
-  invoices: string[];
+  @IsString()
+  @MinLength(4)
+  status: string;
 }

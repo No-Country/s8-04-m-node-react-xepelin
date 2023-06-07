@@ -3,7 +3,7 @@ import { CreatePaymentDto } from './dto/create-payment.dto';
 import { UpdatePaymentDto } from './dto/update-payment.dto';
 import { InjectModel } from '@nestjs/mongoose';
 import { Payment } from './entities/payment.entity';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 
 @Injectable()
 export class PaymentsService {
@@ -18,10 +18,12 @@ export class PaymentsService {
       const newPayment = this.paymentModel.create({
         ...paymentData,
       });
-
-      //test example
-      //new mongoose.Types.ObjectId(paymentData.employeeApplied.toString()),
-      //new mongoose.Types.ObjectId(paymentData.company.toString()),
+      (await newPayment).employeeApplied = new mongoose.Types.ObjectId(
+        paymentData.employeeApplied.toString(),
+      );
+      (await newPayment).company = new mongoose.Types.ObjectId(
+        paymentData.company.toString(),
+      );
 
       (await newPayment).save();
       return await newPayment;
@@ -39,7 +41,7 @@ export class PaymentsService {
     }
   }
 
-  async findOne(id: number) {
+  async findOne(id: string) {
     try {
       const payment = await this.paymentModel.findOne({ _id: id });
       return payment;
@@ -48,11 +50,11 @@ export class PaymentsService {
     }
   }
 
-  update(id: number, updatePaymentDto: UpdatePaymentDto) {
+  update(id: string, updatePaymentDto: UpdatePaymentDto) {
     return `This action updates a #${id} payment`;
   }
 
-  remove(id: number) {
+  remove(id: string) {
     return `This action removes a #${id} payment`;
   }
 }

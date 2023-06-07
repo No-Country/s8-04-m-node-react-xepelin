@@ -3,18 +3,18 @@ import { ApiProperty } from '@nestjs/swagger';
 import { Document, Types } from 'mongoose';
 
 @Schema()
-export class Payment extends Document {
+export class Invoice extends Document {
   @ApiProperty()
-  @Prop({ default: 150000 })
+  @Prop()
+  supplier: string;
+
+  @ApiProperty()
+  @Prop({ default: 0 })
   amount: number;
 
   @ApiProperty()
-  @Prop({ default: 10 })
-  interestRate: number;
-
-  @ApiProperty()
   @Prop({ default: new Date() })
-  startDate: Date;
+  issueDate: Date;
 
   @ApiProperty()
   @Prop({
@@ -24,19 +24,19 @@ export class Payment extends Document {
       return currentDate.toISOString();
     },
   })
-  paymentDeadline: Date;
+  dueDate: Date;
 
   @ApiProperty()
-  @Prop({ array: false, ref: 'User' })
-  employeeApplied: Types.ObjectId;
+  @Prop()
+  detail: string;
 
   @ApiProperty()
-  @Prop({ array: false, ref: 'Company' })
+  @Prop({ ref: 'Company' })
   company: Types.ObjectId;
 
   @ApiProperty()
-  @Prop({ array: true, ref: 'Invoice' })
-  invoices?: Types.ObjectId[];
+  @Prop()
+  status: string;
 }
 
-export const PaymentSchema = SchemaFactory.createForClass(Payment);
+export const InvoiceSchema = SchemaFactory.createForClass(Invoice);
