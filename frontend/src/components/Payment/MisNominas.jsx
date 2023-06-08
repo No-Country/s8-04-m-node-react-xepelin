@@ -6,7 +6,7 @@ const FacturasPagadas =({title, key})=>{
 
   return(
 
-    <div key={key}>
+    <div key={key} className="max-w-full overflow-x-auto">
       <h2 className="px-3 py-3 font-bold">
         {title}
       </h2>

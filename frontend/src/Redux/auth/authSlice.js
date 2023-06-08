@@ -1,4 +1,5 @@
 import {createSlice} from '@reduxjs/toolkit'
+import { getCompanyInfo } from "../../Redux/auth/companySlice";
 import axios from "axios"
 const apiUrl = import.meta.env.VITE_API_URL;
 export const authSlice = createSlice({
@@ -59,20 +60,17 @@ export const authSlice = createSlice({
     }
 });
 
-
-// esta funcion no la estoy usando
 export const loginuser = (payload) => {
 console.log(payload)
     return async (dispatch) => {
         try {
             dispatch({type: onChecking});
-            //const urlBase = "https://zepellin.onrender.com";
             const response = await axios.post(`${apiUrl}/v1/auth/login`, payload);
             if(response.data.token){
               dispatch({type: onLogin, payload: response.data})
+              dispatch(getCompanyInfo(response.data.user.companies[0]))
             }
           } catch (error) {
-            console.error(error, "error")
             dispatch({type: onLoginError, error: error.response.data.message});
           }
     }

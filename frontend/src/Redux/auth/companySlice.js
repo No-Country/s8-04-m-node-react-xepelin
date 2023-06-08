@@ -30,7 +30,7 @@ export const companySlice = createSlice({
 
 // obtener información de la empresa
 export const getCompanyInfo = (payload) => {
-console.log(payload)
+console.log("payload", payload)
     return async (dispatch) => {
         try {
             dispatch({type: onCheckingCompany});
