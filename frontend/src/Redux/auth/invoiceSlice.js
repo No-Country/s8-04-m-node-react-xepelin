@@ -1,5 +1,7 @@
 import {createSlice} from '@reduxjs/toolkit'
 import axios from "axios"
+import { getPaymentInfo } from './paymentSlice';
+
 const apiUrl = import.meta.env.VITE_API_URL;
 export const invoiceSlice = createSlice({
     name: 'invoice',
@@ -35,6 +37,7 @@ console.log("getInvoiceInfo payload: ",payload)
             const response = await axios(`${apiUrl}/v1/invoices/${payload}/company`);
             if(response.data){
               dispatch({type: onGetInvoice, payload: response.data})
+              dispatch(getPaymentInfo(payload))
               console.log("Invoices: ", response.data)
             }
           } catch (error) {

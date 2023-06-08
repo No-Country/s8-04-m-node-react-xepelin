@@ -48,7 +48,7 @@ console.log(payload)
     return async (dispatch) => {
         try {
             dispatch({type: onCheckingPayment});
-            const response = await axios(`${apiUrl}/v1/payments/${payload}`);
+            const response = await axios(`${apiUrl}/v1/payments/${payload}/company`);
             if(response.data){
               dispatch({type: onGetPayment, payload: response.data})
               console.log(response.data)
