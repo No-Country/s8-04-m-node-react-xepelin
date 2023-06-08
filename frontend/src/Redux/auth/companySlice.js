@@ -17,7 +17,6 @@ export const companySlice = createSlice({
         onGetCompany: (state, {payload}) => {
             state.status = "ready";
             state.company = payload;
-            console.log(payload)
             state.errorMessage = undefined;
         },
         onGetCompanyError: (state, {error}) => {
@@ -31,7 +30,6 @@ export const companySlice = createSlice({
 
 // obtener información de la empresa
 export const getCompanyInfo = (payload) => {
-console.log("payload", payload)
     return async (dispatch) => {
         try {
             dispatch({type: onCheckingCompany});
@@ -39,10 +37,8 @@ console.log("payload", payload)
             if(response.data){
               dispatch({type: onGetCompany, payload: response.data})
               dispatch(getInvoiceInfo(response.data._id))
-              console.log("companies: ", response.data)
             }
           } catch (error) {
-            console.error(error, "error")
             dispatch({type: onGetCompanyError, error: error.response.data.message});
           }
     }

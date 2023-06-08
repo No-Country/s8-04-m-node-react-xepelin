@@ -18,7 +18,6 @@ export const invoiceSlice = createSlice({
         onGetInvoice: (state, {payload}) => {
             state.status = "ready";
             state.invoice = payload;
-            console.log(payload)
             state.errorMessage = undefined;
         },
         onGetInvoiceError: (state, {error}) => {
@@ -30,7 +29,6 @@ export const invoiceSlice = createSlice({
 });
 
 export const getInvoiceInfo = (payload) => {
-console.log("getInvoiceInfo payload: ",payload)
     return async (dispatch) => {
         try {
             dispatch({type: onCheckingInvoice});
@@ -38,10 +36,8 @@ console.log("getInvoiceInfo payload: ",payload)
             if(response.data){
               dispatch({type: onGetInvoice, payload: response.data})
               dispatch(getPaymentInfo(payload))
-              console.log("Invoices: ", response.data)
             }
           } catch (error) {
-            console.error(error, "error")
             dispatch({type: onGetInvoiceError, error: error.response.data.message});
           }
     }

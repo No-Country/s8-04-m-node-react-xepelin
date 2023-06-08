@@ -1,9 +1,17 @@
-import { useSelector } from 'react-redux'
+import { useSelector } from 'react-redux';
+import { format } from "date-fns";
+import { useDispatch } from "react-redux";
+import { setPayData } from '../../Redux/auth/payDataSlice';
 
 const FacturasAPagar = () => {
   //const currentCompany = useSelector((state) => state.company.company)
-  const currentInvoices = useSelector((state) => state.invoices.invoice)
-
+  const currentInvoices = useSelector((state) => state.invoices.invoice.slice(0,15))
+  const currentDataPay = useSelector((state) => state.paydata.paydata);
+  const dispatch = useDispatch();
+  const handlePaymentData = (values) => {
+    dispatch(setPayData(values));
+    console.log(currentDataPay);
+  };
   return (
     <div className="bg-white w-full rounded-xl p-8">
       <div className="flex flex-col">
@@ -54,6 +62,8 @@ const FacturasAPagar = () => {
                               <input
                                 id="checkbox_all1"
                                 type="checkbox"
+                                onClick={() => handlePaymentData({amount:invoice.amount, invoice: invoice._id})}
+                                disabled = {invoice.status === "paid" ? (true) : (false)}
                                 className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
                               />
                               <label htmlFor="checkbox_all1" className="sr-only">
@@ -64,7 +74,7 @@ const FacturasAPagar = () => {
                           <td className="px-6 py-4">{invoice.supplier}</td>
                           <td className="px-6 py-4">{invoice.status}</td>
                           <td className="px-6 py-4">${invoice.amount}</td>
-                          <td className="px-6 py-4">{invoice.dueDate}</td>
+                          <td className="px-6 py-4">{format(new Date(invoice.dueDate), 'dd-MM-yyyy - hh:mm')}</td>
                         </tr>
                       </tbody>
                       )
