@@ -83,7 +83,11 @@ const FacturasAPagar = () => {
                           <td className="px-6 py-4">{invoice.status}</td>
                           <td className="px-6 py-4">${invoice.amount}</td>
                           <td className="px-6 py-4">{format(new Date(invoice.dueDate), 'dd-MM-yyyy')}</td>
-                          <td className="px-6 py-4"><button onClick={() => {setShowModal(true); setIdModal(invoice._id)}}>PDF</button></td>
+                          <td className="px-6 py-4">
+                            <button onClick={() => {setShowModal(true); setIdModal(invoice._id)}}>
+                            <img width="48" height="48" src="https://img.icons8.com/fluency/48/pdf.png" alt="pdf"/>
+                            </button>
+                          </td>
                         </tr>
                       </tbody>
                       )
