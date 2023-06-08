@@ -3,14 +3,9 @@ import { useEffect, useState } from "react";
 import { RiEyeCloseLine, RiEyeLine } from "react-icons/ri";
 import * as Yup from "yup";
 import { loginuser, onLogout } from "../../Redux/auth/authSlice";
-import { getCompanyInfo } from "../../Redux/auth/companySlice";
 import { useDispatch, useSelector} from "react-redux";
-// import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2"
-//import Loader from "react-loader-spinner"
-// const APIURL = import.meta.env.VITE_API_URL
-
 
 const required = "* Campo obligatorio";
 const schema = Yup.object().shape({
@@ -24,8 +19,6 @@ const schema = Yup.object().shape({
     )
 });
 
-
-
 const LoginForm = () => {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useDispatch();
@@ -34,7 +27,6 @@ const LoginForm = () => {
   const currentStatus = useSelector((state)=> state.user.status);
   const failedLogin = useSelector((state)=> state.user.errorMessage)
   console.log( currentUser)
-
 
   function LoaderComponent() {
     return (
@@ -50,20 +42,9 @@ const LoginForm = () => {
     );
   }
 
-  const loginUser = async (values)=>{
+  const loginUser = async (values) => {
     const data = {...values};
-    /*     try {
-      dispatch(onChecking());
-      const response = await axios.post(`${APIURL}/v1/auth/login`, data);
-      if(response.data.token){
-        dispatch(onLogin(response.data))
-      }
-    } catch (error) {
-      console.error(error, "error")
-      dispatch(onLoginError(error.response.data.message));
-    } */
     dispatch(loginuser(data))
-    dispatch(getCompanyInfo(currentUser.companies))
   }
   
   useEffect(()=>{

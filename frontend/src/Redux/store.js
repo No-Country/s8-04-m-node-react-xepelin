@@ -4,9 +4,16 @@ import persistStore from 'redux-persist/es/persistStore'
 import storage from 'redux-persist/es/storage'
 import authSlice from './auth/authSlice'
 import companySlice from './auth/companySlice'
+import invoiceSlice from './auth/invoiceSlice'
+import paymentSlice from './auth/paymentSlice'
+import payDataSlice from './auth/payDataSlice'
+
 console.log(authSlice, 'authSlice')
 export const rootReducer = combineReducers({
     //reducer
+    paydata: payDataSlice,
+    payments: paymentSlice,
+    invoices: invoiceSlice,
     user: authSlice,
     company: companySlice
 });

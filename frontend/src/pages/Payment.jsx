@@ -7,13 +7,13 @@ const Payment = () => {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full bg-Neutral-50 p-8">
       <div className="flex flex-col">
-        <Performance />
+        <FacturasAPagar />
       </div>
       <div className="flex flex-col">
         <Payments />
       </div>
       <div className="flex flex-col">
-        <FacturasAPagar />
+        <Performance />
       </div>
       <div className="flex flex-col">
         <MisNominas />

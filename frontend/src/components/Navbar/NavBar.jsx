@@ -1,12 +1,9 @@
-import React from 'react'
 import { grupo, zepelin } from '../../assets/images'
 import { Link } from 'react-router-dom'
 import { useSelector, useDispatch } from 'react-redux'
 import { onLogout } from '../../Redux/auth/authSlice'
 import { useNavigate } from 'react-router-dom';
 import { Avatar, Dropdown } from 'flowbite-react'
-
-
 
 const NavBar = () => {
   const currentStatus = useSelector((state)=> state.user.status);
@@ -47,7 +44,6 @@ const NavBar = () => {
             <div className="flex items-center">
                 <Dropdown
                   inline
-                  //label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded/>}
                   label={<Avatar alt="User settings" img={grupo}/>}
                 >
                   <Dropdown.Header>
@@ -58,19 +54,19 @@ const NavBar = () => {
                     {currerntUser.email}
                     </span>
                   </Dropdown.Header>
-                  <Dropdown.Item>
                     <Link to={"/dashboard"} className="block  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                      Panel De Control
+                      <Dropdown.Item>
+                        Panel De Control
+                      </Dropdown.Item>
                     </Link>
-                  </Dropdown.Item>
-                  <Dropdown.Item>
                   <Link to={"/profile"} className="block  hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                    Perfil
-                  </Link>
-                  </Dropdown.Item>
+                    <Dropdown.Item>
+                      Perfil
+                    </Dropdown.Item>
+                  </Link>                  
                   <Dropdown.Divider />
-                  <Dropdown.Item>
-                    <button onClick={()=>logOut()} className="block text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white" id='logout'>
+                  <Dropdown.Item onClick={()=>logOut()}>
+                    <button className="block text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-400 dark:hover:text-white" id='logout'>
                       Salir
                     </button>
                   </Dropdown.Item>

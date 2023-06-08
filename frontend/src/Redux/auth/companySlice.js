@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import axios from "axios"
+import { getInvoiceInfo } from './invoiceSlice';
 const apiUrl = import.meta.env.VITE_API_URL;
 export const companySlice = createSlice({
     name: 'company',
@@ -16,7 +17,6 @@ export const companySlice = createSlice({
         onGetCompany: (state, {payload}) => {
             state.status = "ready";
             state.company = payload;
-            console.log(payload)
             state.errorMessage = undefined;
         },
         onGetCompanyError: (state, {error}) => {
@@ -30,17 +30,15 @@ export const companySlice = createSlice({
 
 // obtener información de la empresa
 export const getCompanyInfo = (payload) => {
-console.log(payload)
     return async (dispatch) => {
         try {
             dispatch({type: onCheckingCompany});
             const response = await axios(`${apiUrl}/v1/companies/${payload}`);
             if(response.data){
               dispatch({type: onGetCompany, payload: response.data})
-              console.log(response.data)
+              dispatch(getInvoiceInfo(response.data._id))
             }
           } catch (error) {
-            console.error(error, "error")
             dispatch({type: onGetCompanyError, error: error.response.data.message});
           }
     }

@@ -1,4 +1,17 @@
+import { useSelector } from 'react-redux';
+import { format } from "date-fns";
+import { useDispatch } from "react-redux";
+import { setPayData } from '../../Redux/auth/payDataSlice';
+
 const FacturasAPagar = () => {
+  //const currentCompany = useSelector((state) => state.company.company)
+  const currentInvoices = useSelector((state) => state.invoices.invoice.slice(0,15))
+  const currentDataPay = useSelector((state) => state.paydata.paydata);
+  const dispatch = useDispatch();
+  const handlePaymentData = (values) => {
+    dispatch(setPayData(values));
+    console.log(currentDataPay);
+  };
   return (
     <div className="bg-white w-full rounded-xl p-8">
       <div className="flex flex-col">
@@ -25,89 +38,48 @@ const FacturasAPagar = () => {
                   </div>
                 </th>
                 <th scope="col" className="px-6 py-3 text-lg">
-                  N Folio
-                </th>
-                <th scope="col" className="px-6 py-3 text-lg">
                   Proveedor
                 </th>
                 <th scope="col" className="px-6 py-3 text-lg">
-                  Tipo
+                  Status
                 </th>
                 <th scope="col" className="px-6 py-3 text-lg">
                   Monto
                 </th>
                 <th scope="col" className="px-6 py-3 text-lg">
-                  Fecha Pago
+                  Vencimiento
                 </th>
               </tr>
             </thead>
             {/* Inicio Informacion Tabla Facturas a pagar */}
-            <tbody>
-              <tr className="bg-white border-b hover:bg-gray-400">
-                <td className="w-4 p-4">
-                  <div className="flex items-center">
-                    <input
-                      id="checkbox_all1"
-                      type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <label htmlFor="checkbox_all1" className="sr-only">
-                      checkbox
-                    </label>
-                  </div>
-                </td>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">8510125</th>
-                <td className="px-6 py-4">Proveedor 1</td>
-                <td className="px-6 py-4">Tipo</td>
-                <td className="px-6 py-4">$100.000</td>
-                <td className="px-6 py-4">Fecha de pago</td>
-
-              </tr>
-            </tbody>
-            <tbody>
-              <tr className="bg-white border-b hover:bg-gray-400">
-                <td className="w-4 p-4">
-                  <div className="flex items-center">
-                    <input
-                      id="checkbox_all1"
-                      type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <label htmlFor="checkbox_all1" className="sr-only">
-                      checkbox
-                    </label>
-                  </div>
-                </td>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">8510125</th>
-                <td className="px-6 py-4">Proveedor 1</td>
-                <td className="px-6 py-4">Tipo</td>
-                <td className="px-6 py-4">$100.000</td>
-                <td className="px-6 py-4">Fecha de pago</td>
-
-              </tr>
-            </tbody>
-            <tbody>
-              <tr className="bg-white border-b hover:bg-gray-400">
-                <td className="w-4 p-4">
-                  <div className="flex items-center">
-                    <input
-                      id="checkbox_all1"
-                      type="checkbox"
-                      className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
-                    />
-                    <label htmlFor="checkbox_all1" className="sr-only">
-                      checkbox
-                    </label>
-                  </div>
-                </td>
-                <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">8510125</th>
-                <td className="px-6 py-4">Proveedor 1</td>
-                <td className="px-6 py-4">Tipo</td>
-                <td className="px-6 py-4">$100.000</td>
-                <td className="px-6 py-4">Fecha de pago</td>
-
-              </tr>
-            </tbody>
+            {currentInvoices != null &&
+                    currentInvoices.map((invoice, i) => {
+                      return(
+                        <tbody key={i}>
+                        <tr className="bg-white border-b hover:bg-gray-400">
+                          <td className="w-4 p-4">
+                            <div className="flex items-center">
+                              <input
+                                id="checkbox_all1"
+                                type="checkbox"
+                                onClick={() => handlePaymentData({amount:invoice.amount, invoice: invoice._id})}
+                                disabled = {invoice.status === "paid" ? (true) : (false)}
+                                className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500"
+                              />
+                              <label htmlFor="checkbox_all1" className="sr-only">
+                                checkbox
+                              </label>
+                            </div>
+                          </td>
+                          <td className="px-6 py-4">{invoice.supplier}</td>
+                          <td className="px-6 py-4">{invoice.status}</td>
+                          <td className="px-6 py-4">${invoice.amount}</td>
+                          <td className="px-6 py-4">{format(new Date(invoice.dueDate), 'dd-MM-yyyy - hh:mm')}</td>
+                        </tr>
+                      </tbody>
+                      )
+                    }
+                  )}
             {/* Final Informacion Tabla Facturas a pagar */}
           </table>
         </div>
