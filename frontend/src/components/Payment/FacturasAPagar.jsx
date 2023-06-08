@@ -1,17 +1,22 @@
 import { useSelector } from 'react-redux';
 import { format } from "date-fns";
 import { useDispatch } from "react-redux";
+import { useState } from "react";
 import { setPayData } from '../../Redux/auth/payDataSlice';
+import PdfModal from './InvoicePdfView';
 
 const FacturasAPagar = () => {
   //const currentCompany = useSelector((state) => state.company.company)
   const currentInvoices = useSelector((state) => state.invoices.invoice.slice(0,15))
+  const [showModal, setShowModal] = useState(false);
+  const [idModal, setIdModal] = useState(false);
   const currentDataPay = useSelector((state) => state.paydata.paydata);
   const dispatch = useDispatch();
   const handlePaymentData = (values) => {
     dispatch(setPayData(values));
     console.log(currentDataPay);
   };
+  
   return (
     <div className="bg-white w-full rounded-xl p-8">
       <div className="flex flex-col">
@@ -49,6 +54,9 @@ const FacturasAPagar = () => {
                 <th scope="col" className="px-6 py-3 text-lg">
                   Vencimiento
                 </th>
+                <th scope="col" className="px-6 py-3 text-lg">
+                  PDF
+                </th>
               </tr>
             </thead>
             {/* Inicio Informacion Tabla Facturas a pagar */}
@@ -74,7 +82,8 @@ const FacturasAPagar = () => {
                           <td className="px-6 py-4">{invoice.supplier}</td>
                           <td className="px-6 py-4">{invoice.status}</td>
                           <td className="px-6 py-4">${invoice.amount}</td>
-                          <td className="px-6 py-4">{format(new Date(invoice.dueDate), 'dd-MM-yyyy - hh:mm')}</td>
+                          <td className="px-6 py-4">{format(new Date(invoice.dueDate), 'dd-MM-yyyy')}</td>
+                          <td className="px-6 py-4"><button onClick={() => {setShowModal(true); setIdModal(invoice._id)}}>PDF</button></td>
                         </tr>
                       </tbody>
                       )
@@ -82,6 +91,15 @@ const FacturasAPagar = () => {
                   )}
             {/* Final Informacion Tabla Facturas a pagar */}
           </table>
+          <button onClick={() => setShowModal(true)}>PDF</button>
+          {showModal ? (
+            <PdfModal
+              isOpen={showModal}
+              onClose={() => setShowModal(false)}
+              id={idModal}
+            />
+          ) : null}
+
         </div>
       </div>
     </div>
