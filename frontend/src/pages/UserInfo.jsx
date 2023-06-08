@@ -3,7 +3,6 @@ import Card from "../components/card/Card";
 
 import { useSelector } from 'react-redux'
 
-
 const UserInfo = () => {
   const currentStatus = useSelector((state)=> state.user.status);
   const currentUser = useSelector((state)=> state.user.user)

@@ -1,5 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 import axios from "axios"
+import { getInvoiceInfo } from './invoiceSlice';
 const apiUrl = import.meta.env.VITE_API_URL;
 export const companySlice = createSlice({
     name: 'company',
@@ -37,7 +38,8 @@ console.log("payload", payload)
             const response = await axios(`${apiUrl}/v1/companies/${payload}`);
             if(response.data){
               dispatch({type: onGetCompany, payload: response.data})
-              console.log(response.data)
+              dispatch(getInvoiceInfo(response.data._id))
+              console.log("companies: ", response.data)
             }
           } catch (error) {
             console.error(error, "error")

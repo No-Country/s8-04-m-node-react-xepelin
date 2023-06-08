@@ -10,12 +10,7 @@ const Payments = () => {
   console.log("payment", currentStatus, currentUser.companies[0], currentCompany)
 
   const handleNewPayment = (values) => {
-    console.log(values, "values");
-    const combinedValues = {
-      ...values,
-    };
-    console.log(combinedValues, "combined");
-    dispatch(newPayment(combinedValues));
+    dispatch(newPayment(values));
   };
 
   var values = {
